@@ -1,16 +1,18 @@
 /*
   data-soal.js
   LKPD Bahasa Jepang Bab 6 | いろいろなところに行けて、よかったです
-  Level: A2.2 • Checkpoint 1 (Topik 1–3) / Persiapan JFT-Basic / LPK
-  Topik 3: 旅行に行こう (Pengalaman Wisata, Rencana & Kesan Perjalanan)
+  Level: A2.2 / Persiapan JFT-Basic / LPK (CHECKPOINT 1 EVALUASI)
+  Topik: 旅行に行こう (Ayo Berwisata / Pengalaman & Transportasi Kereta)
+  Sumber Kurikulum Otentik: IRODORI A2.2 (初級2) Bab 6 & Kanji Irodori Resmi
   
   PENTING:
-  - Password Guru PIN: sensei123 (salt: lkpd_bab6::v1::)
-  - 55 Butir Soal Komprehensif Berstandar CEFR A2 / JF Standard
+  - Folder 'audio/' berisi file Z_[06-01]_... s.d. Z_[06-18]_....mp3 lengkap
+  - Password Guru PIN: sensei123
 */
 
 window.LKPD_DATA = {
   settings: {
+    // Hash Password Guru (PIN: sensei123 via salt lkpd_bab6::v1::)
     teacherPasswordHash: "5eb1d4c01d60a45c906e5d1f8f8f683363af16f2544711ffed967ab67fa9841c",
     sessionKey: "lkpd_bab6_session_v1",
     stateKey: "lkpd_bab6_state_v1",
@@ -22,716 +24,685 @@ window.LKPD_DATA = {
   tabs: [
     {
       id: "panduan",
-      label: "Panduan",
+      label: "Panduan Bab 6",
       type: "static",
       html: `
-        <h2>Panduan LKPD Bab 6 • Checkpoint 1</h2>
-        <div class="note">
-          LKPD ini disusun berdasarkan materi <strong>Irodori Dasar 2 (A2.2) Bab 6: 「いろいろなところに行けて、よかったです」</strong> 
-          dan merupakan <strong>CHECKPOINT 1 (Evaluasi Paruh Pertama Topik 1–3)</strong> pada standar kurikulum <strong>CEFR A2 / JFT-Basic</strong> 
-          untuk kebutuhan peserta pelatihan LPK / calon Pekerja Berketerampilan Spesifik (SSW Tokutei Ginou).
-        </div>
+        <div class="note guide-box">
+          <h2 style="margin-top:0; color:#1d1d1f; font-weight:800; font-size:1.35rem;">
+            🗺️ Bab 6: いろいろなところに行けて、よかったです (Senang Bisa Pergi ke Berbagai Tempat)
+          </h2>
+          <p style="font-size:0.95rem; line-height:1.6; color:#424245;">
+            Selamat datang di <strong>Bab 6 &amp; Checkpoint 1 Evaluasi Komprehensif</strong>. 
+            Materi ini berfokus pada kemampuan berbahasa Jepang dalam konteks berwisata di Jepang, membaca tiket transportasi Shinkansen, memahami pengumuman stasiun, menyampaikan rencana perjalanan, serta menceritakan kesan liburan yang berkesan maupun hal yang disayangkan.
+          </p>
 
-        <h3>A. Tujuan Pembelajaran Bab 6</h3>
-        <p>Setelah menyelesaikan LKPD Bab 6 ini, peserta didik diharapkan mampu:</p>
-        <ol>
-          <li>Menceritakan pengalaman perjalanan wisata dan menyebutkan kegiatan yang dilakukan menggunakan pola <em>～たり、～たりしました</em>.</li>
-          <li>Mengungkapkan kesan perjalanan, suasana tempat wisata, dan rasa bersyukur/senang menggunakan pola <em>～て、...</em> dan <em>～てよかったです</em>.</li>
-          <li>Menyatakan rencana, jadwal, dan durasi penginapan wisata dengan istilah <em>～泊～日</em> (misal: 1泊2日 - <em>ippaku futsuka</em>, 2泊3日 - <em>nihaku mikka</em>).</li>
-          <li>Menceritakan foto kenangan liburan dan mendeskripsikan tempat berkesan di Jepang (Danau Biwa, Hiroshima, Miyajima, Hakone, Okinawa, Kyoto).</li>
-          <li>Membaca teks ulasan blog perjalanan dan pamflet wisata mengenai pengalaman berwisata di Jepang.</li>
-        </ol>
-
-        <h3>B. Can-do Statements Setara A2 / JFT-Basic</h3>
-        <table>
-          <tr><th>No</th><th>Can-do Statement</th><th>Kompetensi Teruji</th></tr>
-          <tr><td>Can-do 22</td><td>旅行の計画や日程について、簡単に話すことができる。</td><td>Mampu berbicara singkat tentang rencana dan jadwal perjalanan wisata.</td></tr>
-          <tr><td>Can-do 23</td><td>旅行先で何をしたか、どうだったかについて話すことができる。</td><td>Mampu menceritakan apa yang dilakukan di tempat wisata dan kesan perjalanannya.</td></tr>
-          <tr><td>Can-do 24</td><td>旅行の写真を見せながら、旅行について話すことができる。</td><td>Mampu menceritakan pengalaman perjalanan sambil memperlihatkan foto kenangan.</td></tr>
-          <tr><td>Can-do 25</td><td>観光地や旅行先についての簡単な口コミやブログを読んで、理解することができる。</td><td>Mampu membaca dan memahami ulasan singkat/blog mengenai pengalaman wisata.</td></tr>
-        </table>
-
-        <h3>C. Ambang Batas Checkpoint 1</h3>
-        <p>Sebagai bab checkpoint penutup Topik 1–3 (Bab 1 s.d. Bab 6):</p>
-        <ul>
-          <li><strong>Nilai Akhir ≥ 75%</strong>: Siap melanjutkan ke Topik 4 (Bab 7 ke atas).</li>
-          <li><strong>Nilai Akhir 65% – 74%</strong>: Memenuhi syarat minimum kelulusan Checkpoint 1.</li>
-          <li><strong>Nilai Akhir &lt; 65%</strong>: Wajib mengulang evaluasi mandiri dan mendengarkan ulang Audio Bank.</li>
-        </ul>
-      `
-    },
-
-    {
-      id: "materi",
-      label: "Materi",
-      type: "static",
-      html: `
-        <h2>Rangkuman Materi Bab 6 (Checkpoint 1)</h2>
-        <div class="note">
-          Tema Utama: <strong>旅行に行こう (Ayo Berwisata / Pengalaman &amp; Kesan Perjalanan)</strong>
-        </div>
-
-        <h3>1. Tata Bahasa Kunci (文法)</h3>
-        <div class="grammar-box">
-          <h4>➊ V-たり、V-たりしました (Menyebutkan Contoh Aktivitas)</h4>
-          <p>Digunakan untuk menyebutkan beberapa contoh kegiatan representatif yang dilakukan selama wisata tanpa harus berurutan kronologis kaku.</p>
-          <p class="ja">例：温泉に入ったり、おいしいものを食べたりしました。<br><small>(Saya telah masuk pemandian air panas dan makan makanan lezat, dll.)</small></p>
-          <p class="ja">例：海で泳いだり、写真を撮ったりしました。<br><small>(Saya berenang di laut dan berfoto-foto, dll.)</small></p>
-        </div>
-
-        <div class="grammar-box">
-          <h4>➋ V-てよかったです / V-ないでよかったです (Rasa Senang &amp; Syukur)</h4>
-          <p>Digunakan untuk menyatakan rasa syukur atau senang atas suatu kejadian atau keputusan yang telah diambil.</p>
-          <p class="ja">例：いろいろなところに行けて、よかったです。<br><small>(Saya senang bisa berkunjung ke berbagai macam tempat.)</small></p>
-          <p class="ja">例：雨が降らないで、よかったです。<br><small>(Untunglah tidak hujan / Saya lega cuaca tidak hujan.)</small></p>
-        </div>
-
-        <div class="grammar-box">
-          <h4>➌ V-て、... / A-くて、... / Na-で、... (Penyambung Kalimat Alasan &amp; Kesan)</h4>
-          <p class="ja">例：景色がとてもきれいで、感動しました。<br><small>(Pemandangannya sangat indah dan saya merasa terkesan/tersentuh.)</small></p>
-          <p class="ja">例：空気がおいしくて、気持ちがよかったです。<br><small>(Udaranya segar dan perasaan menjadi sangat nyaman.)</small></p>
-        </div>
-
-        <div class="grammar-box">
-          <h4>➍ ～泊～日 (Penyebutan Durasi Menginap)</h4>
-          <ul>
-            <li><strong>1泊2日 (いっぱく ふつか):</strong> 1 malam 2 hari</li>
-            <li><strong>2泊3日 (にはく みっか):</strong> 2 malam 3 hari</li>
-            <li><strong>3泊4日 (さんぱく よっか):</strong> 3 malam 4 hari</li>
-            <li><strong>日帰り (ひがえり):</strong> Perjalanan pulang-pergi di hari yang sama (tanpa menginap)</li>
+          <h3 style="font-size:1.05rem; margin-top:16px; margin-bottom:8px; color:#1d1d1f;">🎯 Target Kompetensi (Can-do Irodori A2.2 Bab 6)</h3>
+          <ul style="padding-left:20px; line-height:1.7; font-size:0.9rem; color:#333;">
+            <li><strong>Can-do 23 (切符・掲示):</strong> Mampu menemukan dan membaca informasi penting yang dibutuhkan pada tiket Shinkansen, tanda petunjuk di dalam kereta, serta papan pengumuman stasiun (出発地, 行き先, 到着時間, 指定席, 自由席).</li>
+            <li><strong>Can-do 24 (旅行の計画):</strong> Mampu menyatakan dan menanyakan rencana perjalanan wisata kepada rekan kerja atau teman menggunakan pola <em>〜つもりです</em> dan durasi <em>〜泊〜日</em>.</li>
+            <li><strong>Can-do 25 (車内・駅のアナウンス):</strong> Mampu menyimak dan memahami informasi kedatangan stasiun, nomor jalur transfer, serta kendala perjalanan akibat kecelakaan (<em>人身事故</em>) atau kerusakan sinyal (<em>信号故障</em>).</li>
+            <li><strong>Can-do 26 (旅行の感想):</strong> Mampu menceritakan kesan pengalaman wisata secara sederhana: kegiatan yang dilakukan (<em>〜たり、〜たりしました</em>), rasa senang/bersyukur (<em>〜てよかったです</em>), serta hal yang disayangkan (<em>〜なくて残念でした</em>).</li>
           </ul>
+
+          <h3 style="font-size:1.05rem; margin-top:16px; margin-bottom:8px; color:#1d1d1f;">🏁 Struktur Evaluasi Checkpoint 1 (Bab 1–6)</h3>
+          <p style="font-size:0.9rem; line-height:1.6; color:#555;">
+            Sebagai bab penutup Topik 3 sekaligus tonggak <strong>Checkpoint 1</strong>, evaluasi LKPD Bab 6 mencakup:
+          </p>
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:10px; margin-top:8px;">
+            <div style="background:#fff; border:1px solid #e5e7eb; border-radius:12px; padding:10px;">
+              <strong style="color:#059669;">1. Ujian Mini JFT-Like (32 Soal)</strong>
+              <div style="font-size:0.8rem; color:#666;">Moji (10), Kaiwa (8), Choukai (8), Dokkai (6) &bull; Bobot Rapor 60%</div>
+            </div>
+            <div style="background:#fff; border:1px solid #e5e7eb; border-radius:12px; padding:10px;">
+              <strong style="color:#2563eb;">2. Drill 14 Kanji Otentik</strong>
+              <div style="font-size:0.8rem; color:#666;">8 Soal Pilihan Ganda &bull; Bobot Rapor 15%</div>
+            </div>
+            <div style="background:#fff; border:1px solid #e5e7eb; border-radius:12px; padding:10px;">
+              <strong style="color:#7c3aed;">3. Drill Kosakata Kritis</strong>
+              <div style="font-size:0.8rem; color:#666;">10 Soal Isian Bebas &bull; Bobot Rapor 15%</div>
+            </div>
+            <div style="background:#fff; border:1px solid #e5e7eb; border-radius:12px; padding:10px;">
+              <strong style="color:#ea580c;">4. Praktik Terjemahan Guru</strong>
+              <div style="font-size:0.8rem; color:#666;">5 Soal Esai Rubrik 0–4 &bull; Bobot Rapor 10%</div>
+            </div>
+          </div>
         </div>
       `
     },
 
     {
       id: "moji",
-      label: "Bagian 1: Moji",
+      label: "Bagian 1: Moji & Goi",
       type: "questions",
       items: [
         {
           id: "q01",
           type: "mcq",
           number: "Soal 1.",
-          prompt: "先週、友だちと京都へ（　　）に行きました。",
-          options: ["りょこう", "しょくじ", "かいもの", "さんぽ"],
+          prompt: "新幹線の切符で、電車が出発する駅のことを（　　）と言います。",
+          options: ["出発地（しゅっぱつち）", "行き先（いきさき）", "到着地（とうちゃくち）", "経由地（けいゆち）"],
           answer: 1,
-          hint: "Artinya: 'perjalanan / wisata'"
+          hint: "Stasiun tempat kereta memulai perjalanan (keberangkatan)."
         },
         {
           id: "q02",
           type: "mcq",
           number: "Soal 2.",
-          prompt: "山の上からの（　　）がとてもきれいでした。",
-          options: ["おと", "けしき", "てんき", "におい"],
+          prompt: "新幹線であらかじめ座る場所を予約してある席は、（　　）です。",
+          options: ["自由席（じゆうせき）", "指定席（していせき）", "優先席（ゆうせんせき）", "禁煙席（きんえんせき）"],
           answer: 2,
-          hint: "Artinya: 'pemandangan alam'"
+          hint: "Tempat duduk yang sudah direservasi sebelumnya."
         },
         {
           id: "q03",
           type: "mcq",
           number: "Soal 3.",
-          prompt: "会社の人たちに京都の（　　）を買いました。",
-          options: ["おみやげ", "おべんとう", "きっぷ", "にもつ"],
-          answer: 1,
-          hint: "Artinya: 'oleh-oleh / suvenir'"
+          prompt: "予約をしなくても、空いている席に自由に座れる車両の席は（　　）です。",
+          options: ["指定席", "自由席", "グリーン席", "指定車両"],
+          answer: 2,
+          hint: "Kursi tanpa reservasi pada gerbong tertentu."
         },
         {
           id: "q04",
           type: "mcq",
           number: "Soal 4.",
-          prompt: "古い日本の（　　）に泊まって、畳の部屋で寝ました。",
-          options: ["アパート", "りょかん", "デパート", "こうじょう"],
+          prompt: "列車が目的地の駅に着く時間のことは、（　　）です。",
+          options: ["出発時間", "到着時間", "乗車時間", "発車時間"],
           answer: 2,
-          hint: "Artinya: 'penginapan tradisional Jepang'"
+          hint: "Waktu kedatangan di stasiun tujuan."
         },
         {
           id: "q05",
           type: "mcq",
           number: "Soal 5.",
-          prompt: "露天（　　）に入りながら、富士山を見ました。",
-          options: ["プール", "シャワー", "おんせん", "かわ"],
-          answer: 3,
-          hint: "Artinya: 'pemandian air panas'"
+          prompt: "事故や悪天候のため、電車の運行を一時的に止めることを運転（　　）と言います。",
+          options: ["再開（さいかい）", "見合わせ（みあわせ）", "開始（かいし）", "延長（えんちょう）"],
+          answer: 2,
+          hint: "Istilah penundaan perjalanan kereta (unten miawase)."
         },
         {
           id: "q06",
           type: "mcq",
           number: "Soal 6.",
-          prompt: "観光地でたくさん（　　）を撮って、アルバムを作りました。",
-          options: ["え", "しゃしん", "ビデオ", "きっぷ"],
-          answer: 2,
-          hint: "Artinya: 'foto (shashin o toru)'"
+          prompt: "駅のアナウンスで「信号の（　　）のため、電車が遅れております」と聞こえました。",
+          options: ["故障（こしょう）", "成功（せいこう）", "完成（かんせい）", "修理（しゅうり）"],
+          answer: 1,
+          hint: "Kerusakan pada sistem sinyal kereta."
         },
         {
           id: "q07",
           type: "mcq",
           number: "Soal 7.",
-          prompt: "連休の旅行の（　　）を立てています。",
-          options: ["けいかく", "やくそく", "しゅくだい", "れんしゅう"],
+          prompt: "旅行から帰った後、職場の同僚に配るお菓子などを（　　）と言います。",
+          options: ["お土産（おみやげ）", "お弁当（おべんとう）", "お薬（おくすり）", "お小遣い（おこづかい）"],
           answer: 1,
-          hint: "Artinya: 'rencana (keikaku o tateru)'"
+          hint: "Oleh-oleh khas wisata."
         },
         {
           id: "q08",
           type: "mcq",
           number: "Soal 8.",
-          prompt: "今夜は箱根のホテルに（　　）予定です。",
-          options: ["すむ", "とまる", "やすむ", "はいる"],
+          prompt: "土曜日と日曜日を合わせて休む日のことを（　　）と言います。",
+          options: ["月末（げつまつ）", "週末（しゅうまつ）", "平日（へいじつ）", "年末（ねんまつ）"],
           answer: 2,
-          hint: "Artinya: 'menginap (tomaru)'"
+          hint: "Akhir pekan (sabtu dan minggu)."
         },
         {
           id: "q09",
           type: "mcq",
           number: "Soal 9.",
-          prompt: "北海道は（　　）が豊かで、空気がとても澄んでいます。",
-          options: ["しぜん", "じんこう", "ビル", "くるま"],
-          answer: 1,
-          hint: "Artinya: 'alam (shizen)'"
+          prompt: "山の頂上から見下ろす街の（　　）が、とてもきれいでした。",
+          options: ["空気", "景色（けしき）", "天気", "季節"],
+          answer: 2,
+          hint: "Pemandangan alam / panorama."
         },
         {
           id: "q10",
           type: "mcq",
           number: "Soal 10.",
-          prompt: "日本での生活は、私にとって一生のいい（　　）になります。",
-          options: ["おもいで", "ゆめ", "なやみ", "きもち"],
+          prompt: "来週の連休の（　　）を立てて、新幹線の切符を買いました。",
+          options: ["予定（よてい）", "約束（やくそく）", "理由（りゆう）", "感想（かんそう）"],
           answer: 1,
-          hint: "Artinya: 'kenangan berharga (omoide)'"
+          hint: "Rencana perjalanan / jadwal."
         }
       ]
     },
 
     {
       id: "kaiwa",
-      label: "Bagian 2: Kaiwa",
+      label: "Bagian 2: Kaiwa & Hyogen",
       type: "questions",
       items: [
         {
           id: "q11",
           type: "mcq",
           number: "Soal 11.",
-          prompt: "週末は温泉に入（　　）、おいしい料理を食べ（　　）しました。",
-          options: ["って／て", "ったり／たり", "る／る", "た／た"],
-          answer: 2,
-          hint: "Pola penyebutan contoh kegiatan: ～たり、～たりしました"
+          prompt: "Ａ「今度の連休はどうするの？」<br>Ｂ「友達と京都へ（　　）つもりです。」",
+          options: ["行く", "行った", "行きます", "行かない"],
+          answer: 1,
+          hint: "Pola menyatakan rencana: Bentuk Kamus + つもりです"
         },
         {
           id: "q12",
           type: "mcq",
           number: "Soal 12.",
-          prompt: "Ａ「今回の旅行、どうでしたか？」<br>Ｂ「いろいろな場所に行（　　）、本当によかったです。」",
-          options: ["って", "けて", "かないで", "ったら"],
+          prompt: "大阪では串カツを食べ（　　）、あべのハルカスに登っ（　　）しました。",
+          options: ["て／て", "たり／たり", "たら／たら", "る／る"],
           answer: 2,
-          hint: "Pola rasa bersyukur/senang: bentuk potensial (te-form) + yokatta desu"
+          hint: "Pola menyebutkan beberapa contoh kegiatan: 〜たり、〜たりしました"
         },
         {
           id: "q13",
           type: "mcq",
           number: "Soal 13.",
-          prompt: "山頂の景色がとてもきれい（　　）、みんなで感動しました。",
-          options: ["で", "くて", "に", "な"],
-          answer: 1,
-          hint: "Kata sifat-Na (kirei) bentuk sambung te-form adalah で"
+          prompt: "Ａ「今回の旅行はどうでしたか？」<br>Ｂ「いろいろな場所に行（　　）、本当によかったです。」",
+          options: ["って", "けて", "かないで", "ったら"],
+          answer: 2,
+          hint: "Pola rasa bersyukur/senang: bentuk potensial (te-form) + よかったです (ikete yokatta desu)"
         },
         {
           id: "q14",
           type: "mcq",
           number: "Soal 14.",
-          prompt: "今回はゆっくりしたいので、２（　　）３日のツアーを申し込みました。",
-          options: ["泊（はく）", "夜（よる）", "回（かい）", "日（ひ）"],
+          prompt: "海に行きましたが、まだ水が冷たくて泳げ（　　）、残念でした。",
+          options: ["なくて", "ないで", "なかって", "ず"],
           answer: 1,
-          hint: "Penyebutan menginap 2 malam: 2泊3日 (nihaku mikka)"
+          hint: "Pola menyatakan hal yang disayangkan: bentuk negatif te-form (〜なくて) + 残念でした"
         },
         {
           id: "q15",
           type: "mcq",
           number: "Soal 15.",
-          prompt: "Ａ「これ、どこで撮った写真ですか？」<br>Ｂ「先週行った広島の宮島で（　　）写真ですよ。」",
-          options: ["撮る", "撮った", "撮りたい", "撮って"],
-          answer: 2,
-          hint: "Bentuk lampau modifikasi kata benda: V-ta + meishi"
+          prompt: "アナウンス「まもなく岡山に到着（　　）。お出口は左側です。」",
+          options: ["いたします", "します", "なさいます", "おります"],
+          answer: 1,
+          hint: "Bentuk keigo pengumuman resmi transportasi: 到着いたします"
         },
         {
           id: "q16",
           type: "mcq",
           number: "Soal 16.",
-          prompt: "旅行の間、ずっと天気が（　　）よかったです。",
-          options: ["よくて", "よくなくて", "いいで", "よかった"],
-          answer: 1,
-          hint: "Ungkapan rasa syukur: 'untunglah cuacanya bagus' (yokute yokatta desu)"
+          prompt: "駅のアナウンス「人身事故の（　　）、京浜東北線は運転を見合わせております。」",
+          options: ["から", "ため", "ので", "のに"],
+          answer: 2,
+          hint: "Kata penghubung formal alasan/sebab dalam pengumuman: 名詞 + のため"
         },
         {
           id: "q17",
           type: "mcq",
           number: "Soal 17.",
-          prompt: "新幹線に（　　）、あっという間に名古屋に着きました。",
-          options: ["乗ったら", "乗って", "乗るから", "乗れば"],
-          answer: 2,
-          hint: "Bentuk urutan kejadian sederhana: V-te"
+          prompt: "今回はゆっくり観光したいので、２（　　）３日の旅行を申し込みました。",
+          options: ["泊（はく）", "夜（よる）", "回（かい）", "日（ひ）"],
+          answer: 1,
+          hint: "Satuan menginap dalam wisata: 2泊3日 (nihaku mikka)"
         },
         {
           id: "q18",
           type: "mcq",
           number: "Soal 18.",
-          prompt: "心配していましたが、雨が降ら（　　）、本当によかったです。",
-          options: ["なくて", "ないで", "なかって", "ず"],
-          answer: 2,
-          hint: "Pola 'untung tidak hujan': V-naide yokatta desu"
+          prompt: "乗客「すみません、さいたま新都心に行きたいんですが…」<br>駅員「埼京線なら（　　）よ。8番線から乗ってください。」",
+          options: ["動いています", "止まっています", "遅れています", "ありません"],
+          answer: 1,
+          hint: "Penjelasan petugas stasiun bahwa jalur Saikyo beroperasi (bergerak/berjalan lancar)."
         }
       ]
     },
 
     {
       id: "choikai",
-      label: "Bagian 3: Choukai",
+      label: "Bagian 3: Choukai (Audio Asli)",
       type: "questions",
       items: [
         {
           id: "q19",
           type: "listening",
           number: "Soal 19.",
-          prompt: "音声を聞いて答えてください。男の人は旅行で何をしましたか。",
-          audioUrl: "audio/Z_[06-01]_choukai1.mp3",
+          prompt: "音声（アナウンス 1）を聞いて答えてください。特急サンダーバード19号金沢行きの「自由席」は何号車ですか。",
+          audioUrl: "audio/Z_[06-05]_kiku1.mp3",
           playCount: 2,
           options: [
-            "湖でカヌーに乗ったり、サイクリングをしたりした",
-            "山に登ったり、スキーをしたりした",
-            "ホテルで一日中寝ていた",
-            "美術館を見学した"
+            "1号車",
+            "2号車、3号車、4号車",
+            "5号車、6号車、7号車",
+            "8号車、9号車"
           ],
-          answer: 1,
-          script: "女：週末の琵琶湖の旅行、どうでしたか？ 男：すごく楽しかったですよ！湖でカヌーに乗ったり、周りをサイクリングしたりしました。天気もよくて最高でした。"
+          answer: 3,
+          script: "アナウンス 1: 11時42分発 特急サンダーバード19号 金沢行きは、11番乗り場から発車します。列車は9両で到着します。前から9号車、8号車の順でいちばん後ろが1号車です。自由席は5号車、6号車、7号車、指定席は2号車、3号車、4号車、8号車、9号車、グリーン席は1号車です。"
         },
         {
           id: "q20",
           type: "listening",
           number: "Soal 20.",
-          prompt: "音声を聞いて答えてください。女の人はどこで写真を撮りましたか。",
-          audioUrl: "audio/Z_[06-02]_choukai2.mp3",
+          prompt: "音声（アナウンス 2）を聞いて答えてください。列車が岡山駅に着いたとき、出口は何側ですか。",
+          audioUrl: "audio/Z_[06-06]_kiku2.mp3",
           playCount: 2,
           options: [
-            "東京タワーの前",
-            "宮島の海の中の大鳥居の前",
-            "富士山の山頂",
-            "大阪城の天守閣"
+            "右側",
+            "左側",
+            "両側",
+            "前側"
           ],
           answer: 2,
-          script: "男：わあ、きれいな写真ですね！どこですか？ 女：広島の宮島です。海の中に赤い大きな鳥居がある神社で、満潮のときに撮ったんですよ。"
+          script: "アナウンス 2: ご乗車ありがとうございました。あと3分ほどで岡山です。お出口は左側、22番線に着きます。乗り換えのご案内をいたします。新幹線、各駅に止まります「こだま729号」博多行き、7時50分、着きました同じホーム、向かい側、21番線中ほどへお越しください。山陽線倉敷方面福山行き、7時57分、2番線..."
         },
         {
           id: "q21",
           type: "listening",
           number: "Soal 21.",
-          prompt: "音声を聞いて答えてください。二人は何泊何日で旅行に行きましたか。",
-          audioUrl: "audio/Z_[06-03]_choukai3.mp3",
+          prompt: "音声（会話 1）を聞いて答えてください。高知行きの電車が遅れている原因は何ですか。",
+          audioUrl: "audio/Z_[06-07]_kiku1.mp3",
           playCount: 2,
           options: [
-            "日帰り",
-            "１泊２日",
-            "２泊３日",
-            "３泊４日"
+            "大雨のため",
+            "信号故障のため",
+            "人身事故のため",
+            "停電のため"
           ],
-          answer: 3,
-          script: "女：北海道へ行ってきたそうですね。何泊で行ったんですか？ 男：２泊３日で行ってきました。札幌と小樽を回って、おいしい海鮮丼をたくさん食べましたよ。"
+          answer: 2,
+          script: "アナウンス：お客様にお知らせいたします。当駅13時9分発、高知行きは、信号故障のため、約30分遅れて運転を行っております。Ａ：あのう、すみません。今のアナウンス、何て言ってましたか？ Ｂ：えっと、電車が30分遅れるそうですよ。信号故障だって。信号が壊れたんですよ。"
         },
         {
           id: "q22",
           type: "listening",
           number: "Soal 22.",
-          prompt: "音声を聞いて答えてください。男の人が旅行で一番よかったと言っていることは何ですか。",
-          audioUrl: "audio/Z_[06-04]_choukai4.mp3",
+          prompt: "音声（会話 2）を聞いて答えてください。駅員はさいたま新都心へ行きたい乗客に、何番線からどの電車に乗るよう案内しましたか。",
+          audioUrl: "audio/Z_[06-08]_kiku2.mp3",
           playCount: 2,
           options: [
-            "買い物がたくさんできたこと",
-            "露天風呂から星空が見られたこと",
-            "電車の切符が安かったこと",
-            "友だちに偶然会えたこと"
+            "2番線から京浜東北線",
+            "8番線から埼京線",
+            "5番線から宇都宮線",
+            "11番線から高崎線"
           ],
           answer: 2,
-          script: "女：箱根の温泉旅館はどうでしたか？ 男：部屋も広かったし、夜に露天風呂に入ってきれいな星空が見られて、本当によかったです。"
+          script: "アナウンス：浦和駅と赤羽駅の間で発生した人身事故の影響で、京浜東北線などは全線で運転を見合わせています。大宮方面へお越しのお客様は埼京線をご利用ください。乗客：すみません、さいたま新都心に行きたいんですけど… 駅員：埼京線の北与野駅から歩けますよ。8番線から乗ってください。"
         },
         {
           id: "q23",
           type: "listening",
           number: "Soal 23.",
-          prompt: "音声を聞いて答えてください。女の人は旅行でどんなお土産を買いましたか。",
-          audioUrl: "audio/Z_[06-05]_choukai5.mp3",
+          prompt: "音声（感想 1）を聞いて答えてください。男の人は大阪で何をしましたか。",
+          audioUrl: "audio/Z_[06-10]_kiku1.mp3",
           playCount: 2,
           options: [
-            "京都の伝統的なお菓子（八ツ橋）とお茶",
-            "北海道のチョコレート",
-            "沖縄のシーサーの置物",
-            "東京のキーホルダー"
+            "串カツやたこ焼きを食べて、あべのハルカスに登った",
+            "海で泳いだり、魚釣りをしたりした",
+            "山に登ってリスの写真を撮った",
+            "オランダの花畑でイルミネーションを見た"
           ],
           answer: 1,
-          script: "男：京都のお土産、ありがとうございます！おいしそうですね。 女：有名な八ツ橋と宇治の緑茶ですよ。どうぞ召し上がってください。"
+          script: "Ａ：これ、お菓子、どうぞ。大阪のお土産です。 Ｂ：ありがとうございます。大阪はどうでしたか？ Ａ：すごく楽しかったですよ。串カツを食べたり、たこ焼きを食べたりしました。あべのハルカスにも登ったんですよ。 Ｂ：へえ、よかったですね。"
         },
         {
           id: "q24",
           type: "listening",
           number: "Soal 24.",
-          prompt: "音声を聞いて答えてください。男の人はどうして新幹線で行ってよかったと言っていますか。",
-          audioUrl: "audio/Z_[06-06]_choukai6.mp3",
+          prompt: "音声（感想 2）を聞いて答えてください。女の人が浄土ヶ浜で「残念だった」と言っていることは何ですか。",
+          audioUrl: "audio/Z_[06-11]_kiku2.mp3",
           playCount: 2,
           options: [
-            "値段が一番安かったから",
-            "駅弁を食べながら富士山が見えたから",
-            "途中で友達と合流できたから",
-            "ホテルまで直通だったから"
+            "船に乗れなかったこと",
+            "雨が降って景色が見えなかったこと",
+            "まだ水が冷たくて海で泳げなかったこと",
+            "鳥にパンをあげられなかったこと"
           ],
-          answer: 2,
-          script: "女：金沢までは車で行ったんですか？ 男：いいえ、北陸新幹線で行きました。速いし、駅弁を食べながら雪景色が見られて、新幹線で行ってよかったです。"
+          answer: 3,
+          script: "Ａ：週末は何をしてたの？ Ｂ：友達と浄土ヶ浜へ行ったの。海がすごくきれいで、船に乗ったり、鳥にパンをあげたりして、楽しかったよ。 Ａ：海で泳いだ？ Ｂ：ううん、まだ水が冷たくて、泳げなくて残念だった。でも気持ちよかったよ。"
         },
         {
           id: "q25",
           type: "listening",
           number: "Soal 25.",
-          prompt: "音声を聞いて答えてください。女の人は沖縄旅行で何ができなかったと残念がっていますか。",
-          audioUrl: "audio/Z_[06-07]_choukai7.mp3",
+          prompt: "音声（感想 3）を聞いて答えてください。男の人はどうして高尾山を歩いて登りましたか。",
+          audioUrl: "audio/Z_[06-12]_kiku3.mp3",
           playCount: 2,
           options: [
-            "美ら海水族館の見学",
-            "沖縄そばを食べること",
-            "風が強くて海で泳ぐこと",
-            "首里城の観光"
+            "ケーブルカーが故障していたから",
+            "ケーブルカーがすごく混んでいたから",
+            "最初から歩く予定だったから",
+            "電車の時間に遅れたから"
           ],
-          answer: 3,
-          script: "男：沖縄旅行はどうでした？ 女：美ら海水族館も行けたし楽しかったんですが、風が強くて海で泳げなかったのがちょっと残念でした。"
+          answer: 2,
+          script: "Ａ：週末、高尾山に行ったんです。 Ｂ：へー、どうでしたか？ Ａ：ケーブルカーがすごく混んでいて、歩いて登ったんです。途中でリスを見たりして楽しかったんですが、すごく疲れました。 Ｂ：でも、山頂からの景色はきれいだったでしょう？ Ａ：はい、景色がとてもきれいで、登ってよかったです。"
         },
         {
           id: "q26",
           type: "listening",
           number: "Soal 26.",
-          prompt: "音声を聞いて答えてください。二人は次の連休にどこへ行くことに決めましたか。",
-          audioUrl: "audio/Z_[06-08]_choukai8.mp3",
+          prompt: "音声（感想 4）を聞いて答えてください。女の人は長崎のハウステンボスで何ができなかったと残念がっていますか。",
+          audioUrl: "audio/Z_[06-13]_kiku4.mp3",
           playCount: 2,
           options: [
-            "日光へ紅葉を見に行く",
-            "大阪へユニバーサルスタジオに行く",
-            "家でゆっくり休む",
-            "沖縄へダイビングに行く"
+            "きれいな花畑を見ること",
+            "イルミネーションを見ること",
+            "時間が合わなくてショーを見ること",
+            "素敵なホテルに泊まること"
           ],
-          answer: 1,
-          script: "男：次の秋の連休、どこか行かない？ 女：いいね！秋だから、日光へ紅葉を見に行ったり、温泉に入ったりするのはどう？ 男：賛成！早く電車の指定席を取ろう。"
+          answer: 3,
+          script: "Ａ：連休はどうだった？どこか行った？ Ｂ：はい、長崎のハウステンボスへ行きました。オランダの町並みやきれいな花畑を見たり、夜はイルミネーションを見たりしました。感動しました。 Ａ：ショーは見られた？ Ｂ：時間が合わなくて、ショーは見られなくて残念でした。でもホテルもすてきで、本当によかったです。"
         }
       ]
     },
 
     {
       id: "dokkai",
-      label: "Bagian 4: Dokkai",
+      label: "Bagian 4: Dokkai (Teks Tiket & Info)",
       type: "questions",
       items: [
         {
           id: "q27",
           type: "mcq",
           number: "Soal 27.",
-          passage: "【ブログ：京都・奈良２泊３日の一人旅】<br>先週の金曜日から２泊３日で関西へ行ってきました。初日は京都で金閣寺を見たり、嵐山で竹林の道を歩いたりしました。外国人の観光客がたくさんいて混んでいましたが、景色が素晴らしかったです。２日目は奈良公園に行きました。鹿におせんべいをあげたり、大仏を見たりできて、とてもいい思い出になりました。最終日は雨が降りましたが、おいしい抹茶パフェを食べられたので大満足です。",
-          prompt: "ブログの筆者は初日の京都で何をしましたか。",
-          options: [
-            "金閣寺を見たり、嵐山を歩いたりした",
-            "奈良公園で鹿におせんべいをあげた",
-            "一日中ホテルで休んでいた",
-            "新幹線で富士山を見ていた"
-          ],
-          answer: 1,
-          hint: "Perhatikan kalimat kedua pada teks blog."
+          passage: `
+            <div style="background:#f8fafc; border:2px dashed #94a3b8; border-radius:12px; padding:14px; font-family:monospace; line-height:1.7;">
+              <strong>【新幹線指定席特急券・乗車券】</strong><br>
+              区間：［東京］&nbsp;&rarr;&nbsp;［新大阪］<br>
+              乗車日：8月10日&nbsp;&nbsp;のぞみ 25号<br>
+              時間：東京発 10:00&nbsp;&nbsp;&rarr;&nbsp;&nbsp;新大阪着 12:30<br>
+              座席：<strong>7号車 12番 A席</strong>（指定席・禁煙）<br>
+              料金：合計 14,720円（運賃 8,910円 / 特急料金 5,810円）
+            </div>
+          `,
+          prompt: "この切符を買った乗客は、東京駅を何時に出発しますか。",
+          options: ["8時10分", "10時00分", "12時30分", "14時70分"],
+          answer: 2,
+          hint: "Perhatikan bagian '東京発' pada tiket."
         },
         {
           id: "q28",
           type: "mcq",
           number: "Soal 28.",
-          prompt: "２日目の奈良で筆者が体験したことは何ですか。",
-          options: [
-            "大雨でホテルから出られなかった",
-            "鹿におせんべいをあげたり、大仏を見たりした",
-            "温泉旅館に泊まって露天風呂に入った",
-            "自転車で京都を一周した"
-          ],
+          prompt: "この切符に書かれている乗客の座席番号はどれですか。",
+          options: ["25号車 10番 A席", "7号車 12番 A席", "8号車 10番 A席", "12号車 7番 A席"],
           answer: 2,
-          hint: "Baca kalimat: '２日目は奈良公園に行きました...'"
+          hint: "Perhatikan bagian '座席' pada tiket."
         },
         {
           id: "q29",
           type: "mcq",
           number: "Soal 29.",
-          prompt: "最終日について正しい記述はどれですか。",
+          prompt: "この新幹線の座席の種類について、正しいものはどれですか。",
           options: [
-            "天気がよくて青空だった",
-            "雨が降ったが、抹茶パフェが食べられて大満足だった",
-            "飛行機に乗り遅れてしまった",
-            "一日中買い物をしていた"
+            "予約が要らない自由席である",
+            "タバコが吸える喫煙席である",
+            "事前に予約された禁煙の指定席である",
+            "グリーン車のエグゼクティブ席である"
           ],
-          answer: 2,
-          hint: "Perhatikan kalimat terakhir: '最終日は雨が降りましたが...大満足です'"
+          answer: 3,
+          hint: "Lihat keterangan '(指定席・禁煙)' pada tiket."
         },
         {
           id: "q30",
           type: "mcq",
           number: "Soal 30.",
-          passage: "【箱根温泉旅館の宿泊プラン】<br>■ プラン名：旬の和食会席と絶景露天風呂満喫プラン（１泊２日・朝夕２食付き）<br>■ チェックイン：15:00 ／ チェックアウト：10:00<br>■ 特典：貸切露天風呂が無料で45分間利用可能（要事前予約）。<br>■ 注意事項：アレルギーがある方は、予約時に事前にお知らせください。当日の料理変更はできません。",
-          prompt: "この宿泊プランの食事はどうなっていますか。",
+          passage: `
+            <div style="background:#fff; border:1px solid #cbd5e1; border-radius:12px; padding:14px; line-height:1.8;">
+              <strong>【新幹線の切符の買い方と注意点】</strong><br>
+              新幹線の切符は、JRの駅の窓口や自動券売機、インターネットなどで買うことができます。新幹線に乗るには「乗車券」と「特急券」の2種類の切符が必要です。特急券には「指定席券」と「自由席券」があります。指定席券はあらかじめ座席を確保できるので安心ですが、自由席券より少し高くなります。<br>
+              新幹線の切符は、<strong>乗車日の1か月前の午前10時から発売</strong>されます。ゴールデンウィークや年末年始などの連休はすぐに指定席が満席になりますので、旅行の予定が決まったら早めに予約したほうがいいです。
+            </div>
+          `,
+          prompt: "新幹線に乗るときに必ず必要な切符の組み合わせは何ですか。",
           options: [
-            "朝食のみ付いている",
-            "夕食のみ付いている",
-            "朝食と夕食の２食が付いている",
-            "食事は付いていない"
+            "乗車券と入場券",
+            "乗車券と特急券",
+            "定期券と回数券",
+            "自由席券と指定席券"
           ],
-          answer: 3,
-          hint: "Lihat tulisan: '朝夕２食付き'"
+          answer: 2,
+          hint: "Perhatikan kalimat kedua pada paragraf pertama."
         },
         {
           id: "q31",
           type: "mcq",
           number: "Soal 31.",
-          prompt: "貸切露天風呂を利用したい場合、どうすればいいですか。",
+          prompt: "新幹線の切符は、いつから買うことができますか。",
           options: [
-            "追加料金を5000円払う",
-            "事前に予約をする",
-            "チェックアウト後に利用する",
-            "誰でも予約なしで自由に入れる"
+            "乗車日の半年前から",
+            "乗車日の1か月前の午前10時から",
+            "乗車当日の朝7時から",
+            "乗車日の1週間前の午後5時から"
           ],
           answer: 2,
-          hint: "Lihat teks: '（要事前予約）' -> Perlu reservasi sebelumnya."
+          hint: "Perhatikan kalimat pertama pada paragraf kedua."
         },
         {
           id: "q32",
           type: "mcq",
           number: "Soal 32.",
-          prompt: "アレルギーがある場合、いつ知らせる必要がありますか。",
+          prompt: "文章の内容と合っているものはどれですか。",
           options: [
-            "チェックインのとき",
-            "予約するとき",
-            "料理が運ばれてきたとき",
-            "いつでもよい"
+            "自由席券は指定席券よりも値段が高い。",
+            "連休の時期は指定席が満席になりやすいので、早めの予約が推奨されている。",
+            "新幹線の切符は駅の窓口でしか買うことができない。",
+            "インターネットで買うときは前日にしか予約できない。"
           ],
           answer: 2,
-          hint: "Lihat teks: '予約時に事前にお知らせください'"
+          hint: "Lihat himbauan pada akhir teks."
         }
       ]
     },
 
     {
       id: "kanji",
-      label: "Bagian 5: Kanji",
+      label: "Bagian 5: Kanji Drill (14 Kanji Bab 6)",
       type: "questions",
       items: [
         {
           id: "q33",
           type: "mcq",
           number: "Soal 33.",
-          prompt: "漢字「旅行」の正しい読み方はどれですか。",
-          options: ["りょこう", "りょかん", "りこう", "りょき"] ,
+          prompt: "新幹線の【指定席】の切符を買いました。（下線部の読み方はどれですか）",
+          options: ["していせき", "じゆうせき", "とっきゅうせき", "よていせき"],
           answer: 1,
-          hint: "Perjalanan / Wisata"
+          hint: "Kanji 指 (shi) + 定 (tei) + 席 (seki) = shiteiseki"
         },
         {
           id: "q34",
           type: "mcq",
           number: "Soal 34.",
-          prompt: "漢字「旅館」の正しい読み方はどれですか。",
-          options: ["りょこう", "りょかん", "りょうかん", "ろかん"],
-          answer: 2,
-          hint: "Penginapan tradisional Jepang"
+          prompt: "人身【事故】の影響で、電車が止まっています。（下線部の読み方はどれですか）",
+          options: ["じこ", "こうじ", "しごと", "こしょう"],
+          answer: 1,
+          hint: "Kanji 事 (ji) + 故 (ko) = jiko (kecelakaan)"
         },
         {
           id: "q35",
           type: "mcq",
           number: "Soal 35.",
-          prompt: "漢字「景色」の正しい読み方はどれですか。",
-          options: ["けいしょく", "けしき", "こうしょく", "けいしき"],
-          answer: 2,
-          hint: "Pemandangan alam"
+          prompt: "信号の【故障】のため、運転を見合わせます。（下線部の読み方はどれですか）",
+          options: ["こしょう", "じこ", "ふしょう", "しょうがい"],
+          answer: 1,
+          hint: "Kanji 故 (ko) + 障 (shou) = koshou (kerusakan mesin/alat)"
         },
         {
           id: "q36",
           type: "mcq",
           number: "Soal 36.",
-          prompt: "漢字「写真」の正しい読み方はどれですか。",
-          options: ["しゃしん", "写心", "しゃじん", "さしん"],
+          prompt: "まもなく次の駅に【到着】いたします。（下線部の読み方はどれですか）",
+          options: ["とうちゃく", "はっしゃ", "しゅっぱつ", "ちゃくせき"],
           answer: 1,
-          hint: "Foto"
+          hint: "Kanji 到 (tou) + 着 (chaku) = touchaku (tiba/sampai)"
         },
         {
           id: "q37",
           type: "mcq",
           number: "Soal 37.",
-          prompt: "「ホテルにとまります」の「とまります」の正しい漢字はどれですか。",
-          options: ["泊まります", "止まります", "富まります", "登まります"],
+          prompt: "【週末】に家族と温泉旅行に行きました。（下線部の読み方はどれですか）",
+          options: ["しゅうまつ", "げつまつ", "ねんまつ", "こんしゅう"],
           answer: 1,
-          hint: "Menginap di hotel (Kanji 泊)"
+          hint: "Kanji 週 (shuu) + 末 (matsu) = shuumatsu (akhir pekan)"
         },
         {
           id: "q38",
           type: "mcq",
           number: "Soal 38.",
-          prompt: "漢字「計画」の正しい読み方はどれですか。",
-          options: ["けいかく", "けいが", "けいかん", "けっかく"],
+          prompt: "水が冷たかったので、海で【泳ぐ】ことができませんでした。（下線部の読み方はどれですか）",
+          options: ["およぐ", "あるく", "のぼる", "はしる"],
           answer: 1,
-          hint: "Rencana / Jadwal"
+          hint: "Kanji 泳 (oyo-gu) = berenang"
         },
         {
           id: "q39",
           type: "mcq",
           number: "Soal 39.",
-          prompt: "漢字「温泉」の正しい読み方はどれですか。",
-          options: ["おんせん", "おんすい", "おゆせん", "おんぜん"],
+          prompt: "京都の有名なお寺を【観光】しました。（下線部の読み方はどれですか）",
+          options: ["かんこう", "りょこう", "けんがく", "あんない"],
           answer: 1,
-          hint: "Pemandian air panas alami"
+          hint: "Kanji 観 (kan) + 光 (kou) = kankou (wisata/pariwisata)"
         },
         {
           id: "q40",
           type: "mcq",
           number: "Soal 40.",
-          prompt: "「新幹線をよやくしました」の「よやく」の正しい漢字はどれですか。",
-          options: ["予約", "豫約", "予役", "由約"],
+          prompt: "飛行機に乗るため、成田【空港】へ向かいました。（下線部の読み方はどれですか）",
+          options: ["くうこう", "みなと", "えき", "こうくう"],
           answer: 1,
-          hint: "Reservasi / Pemesanan tiket"
+          hint: "Kanji 空 (kuu) + 港 (kou) = kuukou (bandara)"
         }
       ]
     },
 
     {
       id: "kosakata",
-      label: "Bagian 6: Kosakata",
+      label: "Bagian 6: Drill Kosakata",
       type: "questions",
       items: [
         {
-          id: "q41",
+          id: "v01",
           type: "vocab",
-          number: "Soal 41.",
-          prompt: "Ketik bahasa Jepang dari 'Perjalanan / Wisata' (hiragana atau kanji):",
-          accepted: ["りょこう", "旅行", "ryokou", "ryokou"]
+          number: "Drill 1.",
+          prompt: "Stasiun tempat kereta memulai perjalanan / keberangkatan (tulis hiragana atau kanji):",
+          accepted: ["しゅっぱつ", "出発", "しゅっぱつち", "出発地", "shuppatsu", "shuppatsuchi"]
         },
         {
-          id: "q42",
+          id: "v02",
           type: "vocab",
-          number: "Soal 42.",
-          prompt: "Ketik kata kerja bentuk kamus dari 'Menginap' (hiragana atau kanji):",
-          accepted: ["とまる", "泊まる", "tomaru"]
+          number: "Drill 2.",
+          prompt: "Waktu kedatangan di stasiun tujuan (tulis hiragana atau kanji):",
+          accepted: ["とうちゃく", "到着", "とうちゃくじかん", "到着時間", "touchaku", "touchakujikan"]
         },
         {
-          id: "q43",
+          id: "v03",
           type: "vocab",
-          number: "Soal 43.",
-          prompt: "Ketik bahasa Jepang dari 'Pemandangan alam' (hiragana atau kanji):",
-          accepted: ["けしき", "景色", "keshiki"]
+          number: "Drill 3.",
+          prompt: "Tempat duduk yang sudah dipesan / reservasi (tulis hiragana atau kanji):",
+          accepted: ["していせき", "指定席", "shiteiseki"]
         },
         {
-          id: "q44",
+          id: "v04",
           type: "vocab",
-          number: "Soal 44.",
-          prompt: "Ketik bahasa Jepang dari 'Oleh-oleh / Buah tangan' (hiragana atau kanji):",
+          number: "Drill 4.",
+          prompt: "Tempat duduk bebas tanpa reservasi (tulis hiragana atau kanji):",
+          accepted: ["じゆうせき", "自由席", "jiyuuseki", "jiyuseki"]
+        },
+        {
+          id: "v05",
+          type: "vocab",
+          number: "Drill 5.",
+          prompt: "Kecelakaan (misal pada jalur kereta) (tulis hiragana atau kanji):",
+          accepted: ["じこ", "事故", "jiko"]
+        },
+        {
+          id: "v06",
+          type: "vocab",
+          number: "Drill 6.",
+          prompt: "Kerusakan mekanik / sinyal (tulis hiragana atau kanji):",
+          accepted: ["こしょう", "故障", "koshou", "kosho"]
+        },
+        {
+          id: "v07",
+          type: "vocab",
+          number: "Drill 7.",
+          prompt: "Oleh-oleh khas wisata (tulis hiragana atau kanji):",
           accepted: ["おみやげ", "お土産", "omiyage"]
         },
         {
-          id: "q45",
+          id: "v08",
           type: "vocab",
-          number: "Soal 45.",
-          prompt: "Ketik bahasa Jepang dari 'Penginapan tradisional Jepang' (hiragana atau kanji):",
-          accepted: ["りょかん", "旅館", "ryokan"]
+          number: "Drill 8.",
+          prompt: "Liburan beruntun / libur panjang (tulis hiragana atau kanji):",
+          accepted: ["れんきゅう", "連休", "renkyuu", "renkyu"]
         },
         {
-          id: "q46",
+          id: "v09",
           type: "vocab",
-          number: "Soal 46.",
-          prompt: "Ketik bahasa Jepang dari 'Pemandian air panas' (hiragana atau kanji):",
-          accepted: ["おんせん", "温泉", "onsen"]
+          number: "Drill 9.",
+          prompt: "Pemandangan alam / pemandangan indah (tulis hiragana atau kanji):",
+          accepted: ["けしき", "景色", "keshiki"]
         },
         {
-          id: "q47",
+          id: "v10",
           type: "vocab",
-          number: "Soal 47.",
-          prompt: "Ketik bahasa Jepang dari 'Foto' (hiragana atau kanji):",
-          accepted: ["しゃしん", "写真", "shashin"]
-        },
-        {
-          id: "q48",
-          type: "vocab",
-          number: "Soal 48.",
-          prompt: "Ketik bahasa Jepang dari 'Rencana' (hiragana atau kanji):",
-          accepted: ["けいかく", "計画", "keikaku"]
-        },
-        {
-          id: "q49",
-          type: "vocab",
-          number: "Soal 49.",
-          prompt: "Ketik bahasa Jepang dari 'Kenangan / Memori indah' (hiragana atau kanji):",
-          accepted: ["おもいで", "思い出", "omoide"]
-        },
-        {
-          id: "q50",
-          type: "vocab",
-          number: "Soal 50.",
-          prompt: "Ketik bahasa Jepang dari 'Alam' (hiragana atau kanji):",
-          accepted: ["しぜん", "自然", "shizen"]
+          number: "Drill 10.",
+          prompt: "Rencana / agenda (tulis hiragana atau kanji):",
+          accepted: ["よてい", "予定", "yotei"]
         }
       ]
     },
 
     {
       id: "terjemahan",
-      label: "Bagian 7: Terjemahan",
+      label: "Bagian 7: Terjemahan Praktis",
       type: "questions",
       items: [
         {
-          id: "q51",
+          id: "tr01",
           type: "translation",
-          number: "Soal 51.",
-          prompt: "Terjemahkan ke bahasa Jepang: 'Saya senang bisa pergi ke berbagai macam tempat.'",
-          sample: "いろいろなところに行けて、よかったです。(Iroirona tokoro ni ikete, yokatta desu.)"
+          number: "Terjemahan 1.",
+          prompt: "Terjemahkan ke dalam bahasa Jepang:<br><em>'Saya berencana pergi ke Osaka selama 3 hari 2 malam naik Shinkansen.'</em>",
+          modelAnswer: "新幹線で2泊3日で大阪へ行くつもりです。（しんかんせんでにはくみっかでおおさかへいくつもりです）"
         },
         {
-          id: "q52",
+          id: "tr02",
           type: "translation",
-          number: "Soal 52.",
-          prompt: "Terjemahkan ke bahasa Jepang: 'Saya telah masuk pemandian air panas dan makan makanan yang lezat.'",
-          sample: "温泉に入ったり、おいしいものを食べたりしました。(Onsen ni haittari, oishii mono o tabetari shimashita.)"
+          number: "Terjemahan 2.",
+          prompt: "Terjemahkan ke dalam bahasa Jepang:<br><em>'Cuacanya bagus, senang sekali bisa pergi ke berbagai tempat.'</em>",
+          modelAnswer: "天気がよくて、いろいろな場所に行けてよかったです。（てんきがよくて、いろいろなところにいけてよかったです）"
         },
         {
-          id: "q53",
+          id: "tr03",
           type: "translation",
-          number: "Soal 53.",
-          prompt: "Terjemahkan ke bahasa Jepang: 'Pemandangannya sangat indah, dan saya merasa sangat terkesan.'",
-          sample: "景色がとてもきれいで、感動しました。(Keshiki ga totemo kirei de, kandou shimashita.)"
+          number: "Terjemahan 3.",
+          prompt: "Terjemahkan ke dalam bahasa Jepang:<br><em>'Sayang sekali airnya masih dingin sehingga tidak bisa berenang di laut.'</em>",
+          modelAnswer: "まだ水が冷たくて、海で泳げなくて残念でした。（まだみずがつめたくて、うみでおよげなくてざんねんでした）"
         },
         {
-          id: "q54",
+          id: "tr04",
           type: "translation",
-          number: "Soal 54.",
-          prompt: "Terjemahkan ke bahasa Jepang: 'Kami telah pergi berlibur ke Hakone selama 2 hari 1 malam.'",
-          sample: "箱根に１泊２日で旅行に行ってきました。(Hakone ni ippaku futsuka de ryokou ni itte kimashita.)"
+          number: "Terjemahan 4.",
+          prompt: "Terjemahkan ke dalam bahasa Jepang:<br><em>'Akibat kerusakan sinyal, kereta terlambat sekitar 30 menit.'</em>",
+          modelAnswer: "信号故障のため、電車が約30分遅れております。（しんごうこしょうのため、でんしゃがやくさんじゅっぷんおくれています）"
         },
         {
-          id: "q55",
+          id: "tr05",
           type: "translation",
-          number: "Soal 55.",
-          prompt: "Terjemahkan ke bahasa Jepang: 'Syukurlah saat perjalanan wisata tidak turun hujan.'",
-          sample: "旅行のとき、雨が降らないでよかったです。(Ryokou no toki, ame ga furanaide yokatta desu.)"
+          number: "Terjemahan 5.",
+          prompt: "Terjemahkan ke dalam bahasa Jepang (Pengumuman resmi):<br><em>'Kereta akan segera tiba di stasiun. Pintu keluar berada di sebelah kiri.'</em>",
+          modelAnswer: "まもなく駅に到着いたします。お出口は左側です。（まもなくえきにとうちゃくいたします。おでぐちはひだりがわです）"
         }
       ]
     },
 
     {
-      id: "hasil",
-      label: "Hasil & Checkpoint 1",
+      id: "result",
+      label: "Nilai & Rapor",
       type: "result"
     },
 
     {
       id: "audiobank",
-      label: "Bank Audio",
+      label: "Bank Audio Shadowing",
       type: "audiobank",
       items: [
-        { track: "Track 01", file: "Z_[06-01]_choukai1.mp3", title: "琵琶湖でのアクティビティ (Kanoo & Cycling)" },
-        { track: "Track 02", file: "Z_[06-02]_choukai2.mp3", title: "宮島の大鳥居の写真 (Shashin)" },
-        { track: "Track 03", file: "Z_[06-03]_choukai3.mp3", title: "北海道2泊3日旅行 (Nihaku Mikka)" },
-        { track: "Track 04", file: "Z_[06-04]_choukai4.mp3", title: "箱根温泉の露天風呂と星空 (Onsen & Hoshizora)" },
-        { track: "Track 05", file: "Z_[06-05]_choukai5.mp3", title: "京都のお土産・八ツ橋 (Omiyage Yatsuhashi)" },
-        { track: "Track 06", file: "Z_[06-06]_choukai6.mp3", title: "北陸新幹線での旅 (Shinkansen)" },
-        { track: "Track 07", file: "Z_[06-07]_choukai7.mp3", title: "沖縄旅行での出来事 (Okinawa Ryokou)" },
-        { track: "Track 08", file: "Z_[06-08]_choukai8.mp3", title: "秋の日光への旅行計画 (Nikko Keikaku)" }
+        { track: "Track 01", file: "Z_[06-05]_kiku1.mp3", title: "アナウンス 1: 特急サンダーバード金沢行き案内 (Gerbong Bebas & Reservasi)" },
+        { track: "Track 02", file: "Z_[06-06]_kiku2.mp3", title: "アナウンス 2: 新幹線岡山駅到着・乗り換え案内 (Pintu Keluar & Jalur Transfer)" },
+        { track: "Track 03", file: "Z_[06-07]_kiku1.mp3", title: "会話 1: 信号故障による列車の遅延アナウンスと確認 (Kerusakan Sinyal)" },
+        { track: "Track 04", file: "Z_[06-08]_kiku2.mp3", title: "会話 2: 人身事故による運転見合わせと埼京線案内 (Pengalihan Rute)" },
+        { track: "Track 05", file: "Z_[06-10]_kiku1.mp3", title: "旅行の感想 1: 大阪旅行（串カツ・たこ焼き・あべのハルカス）" },
+        { track: "Track 06", file: "Z_[06-11]_kiku2.mp3", title: "旅行の感想 2: 浄土ヶ浜（遊覧船・鳥の餌付け・海で泳げず残念）" },
+        { track: "Track 07", file: "Z_[06-12]_kiku3.mp3", title: "旅行の感想 3: 高尾山ハイキング（混雑・徒歩登山・山頂の絶景）" },
+        { track: "Track 08", file: "Z_[06-13]_kiku4.mp3", title: "旅行の感想 4: ハウステンボス（花畑・イルミネーション・ショー見られず）" }
       ]
     }
   ]

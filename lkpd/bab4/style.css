@@ -1,0 +1,670 @@
+/* =========================================
+   CLAYMORPHISM THEME v3 - MAROON & TEAL
+   Vibe: Elegant, Deep Contrast, Spacious
+   Palette: 
+   - Primary: Deep Maroon (#7a1f2b)
+   - Accent: Vibrant Teal (#008080 / #20B2AA)
+   - Background: Soft Off-White/Greyish Blue (#f0f4f8)
+   ========================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Zen+Maru+Gothic:wght@400;500;700&display=swap');
+
+:root {
+  /* --- WARNA DASAR --- */
+  --bg-body: #eef2f5;        /* Latar belakang abu-abu kebiruan sangat terang */
+  --surface-clay: #ffffff;   /* Putih bersih untuk kartu agar kontras tinggi */
+  
+  /* --- AKSEN UTAMA (MAROON) --- */
+  --primary-maroon: #7a1f2b; /* Merah Maroon Gelap */
+  --primary-maroon-light: #9e2a38; /* Variasi lebih terang untuk hover */
+  --primary-maroon-shadow: rgba(122, 31, 43, 0.25); /* Bayangan berwarna maroon transparan */
+  
+  /* --- AKSEN PENDAMPING (HIJAU TOSCA) --- */
+  --accent-teal: #008080;    /* Hijau Tosca Klasik */
+  --accent-teal-bright: #20B2AA; /* Light Sea Green (lebih cerah) */
+  --accent-teal-shadow: rgba(0, 128, 128, 0.2);
+
+  /* --- TEKSTUR BAYANGAN CLAY --- */
+  --shadow-light: rgba(255, 255, 255, 1);
+  --shadow-dark: rgba(163, 177, 198, 0.4); /* Abu-abu kebiruan gelap untuk bayangan netral */
+  
+  /* --- TIPOGRAFI --- */
+  --text-main: #2c3e50;      /* Biru tua hampir hitam (lebih soft dari hitam pekat) */
+  --text-muted: #7f8c8d;     /* Abu-abu medium */
+  
+  /* --- UKURAN SPASIAL (ANTI MEPET) --- */
+  --radius-xl: 30px;
+  --radius-lg: 20px;
+  --radius-md: 15px;
+  --spacing-unit: 1.5rem; /* Digunakan untuk margin/padding dasar */
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif; /* Font Latin modern & geometris */
+  background-color: var(--bg-body);
+  color: var(--text-main);
+  line-height: 1.6;
+  min-height: 100vh;
+  /* Subtle pattern grid for texture */
+  background-image: radial-gradient(#dbe4eb 1px, transparent 1px);
+  background-size: 30px 30px;
+}
+
+.ja, h1, h2, h3, .tab-btn, button {
+  font-family: 'Zen Maru Gothic', 'Poppins', sans-serif !important;
+}
+
+.container {
+  max-width: 950px;
+  margin: 0 auto;
+  padding: 40px 20px; /* Memberikan ruang napas di kiri kanan layar */
+}
+
+/* --- HEADER ELEGAN --- */
+header {
+  background: var(--surface-clay);
+  border-radius: var(--radius-xl);
+  padding: 40px 30px; /* Padding dalam diperbesar */
+  margin-bottom: 40px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  /* Efek Clay: Bayangan luar besar + Highlight dalam */
+  box-shadow: 
+    inset 5px 5px 10px var(--shadow-light),
+    inset -5px -5px 10px var(--shadow-dark),
+    10px 10px 20px var(--shadow-dark);
+}
+
+header::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 6px;
+  background: linear-gradient(90deg, var(--primary-maroon), var(--accent-teal));
+}
+
+header h1 {
+  margin: 0 0 10px;
+  font-size: 2.2rem;
+  color: var(--primary-maroon); /* Judul langsung pakai warna utama */
+  letter-spacing: -0.5px;
+  font-weight: 700;
+}
+
+header p {
+  margin: 0;
+  color: var(--text-muted);
+  font-weight: 500;
+  font-size: 1.1rem;
+}
+
+.badge {
+  display: inline-block;
+  margin-top: 15px;
+  background: var(--accent-teal);
+  color: white;
+  padding: 8px 20px;
+  border-radius: 50px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  box-shadow: 0 4px 10px var(--accent-teal-shadow);
+}
+
+/* --- NAVIGASI TAB PILLS --- */
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px; /* Jarak antar tab diperlebar */
+  justify-content: center;
+  margin-bottom: 40px;
+}
+
+.tab-btn {
+  background: var(--surface-clay);
+  border: none;
+  padding: 12px 25px; /* Padding horizontal cukup lebar */
+  border-radius: 50px;
+  font-weight: 600;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  /* Efek Clay Dasar */
+  box-shadow: 
+    5px 5px 10px var(--shadow-dark),
+    -3px -3px 8px var(--shadow-light);
+}
+
+.tab-btn:hover {
+  transform: translateY(-2px);
+  color: var(--primary-maroon);
+  box-shadow: 
+    6px 6px 12px var(--primary-maroon-shadow),
+    -3px -3px 8px var(--shadow-light);
+}
+
+.tab-btn.active {
+  background: var(--primary-maroon);
+  color: white;
+  box-shadow: 
+    inset 2px 2px 5px rgba(0,0,0,0.2),
+    5px 5px 15px var(--primary-maroon-shadow);
+  transform: scale(1.05);
+}
+
+/* --- PANEL KONTEN CARD CLAY --- */
+.tab-panel {
+  display: none;
+  background: var(--surface-clay);
+  border-radius: var(--radius-xl);
+  padding: 40px; /* PADDING BESAR: Ini kunci anti mepet */
+  margin-bottom: 40px;
+  animation: fadeIn 0.4s ease-out;
+  box-shadow: 
+    15px 15px 30px var(--shadow-dark),
+    -10px -10px 20px var(--shadow-light);
+}
+
+.tab-panel.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.tab-panel h2 {
+  margin-top: 0;
+  color: var(--primary-maroon);
+  font-size: 1.8rem;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 20px;
+  margin-bottom: 30px;
+}
+
+.tab-panel h3 {
+  color: var(--accent-teal);
+  margin-top: 30px;
+  margin-bottom: 15px;
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+/* --- KARTU SOAL QUESTION CARDS --- */
+.question-card {
+  background: #fafafa; /* Sedikit off-white agar terlihat bertumpuk dengan panel putih */
+  border-radius: var(--radius-lg);
+  padding: 25px; /* Padding internal kartu */
+  margin-bottom: 25px; /* Jarak antar soal */
+  border-left: 6px solid var(--accent-teal); /* Garis aksen kiri */
+  box-shadow: 
+    4px 4px 8px var(--shadow-dark),
+    -2px -2px 5px var(--shadow-light);
+  transition: transform 0.2s;
+}
+
+.question-card:hover {
+  transform: translateX(5px);
+  box-shadow: 
+    6px 6px 12px var(--shadow-dark),
+    -2px -2px 5px var(--shadow-light);
+}
+
+.passage {
+  background: #f0f4f8; /* Warna latar teks bacaan */
+  padding: 20px;
+  border-radius: var(--radius-md);
+  margin-bottom: 20px;
+  color: #34495e;
+  border: 1px solid #e1e8ed;
+  font-style: italic;
+}
+
+.options label {
+  display: flex;
+  align-items: center;
+  padding: 15px 20px; /* Tinggi opsi jawaban */
+  margin: 10px 0;
+  background: white;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all 0.2s;
+  border: 1px solid transparent;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.03);
+}
+
+.options label:hover {
+  background: #fff5f5; /* Hover merah muda sangat tipis */
+  border-color: var(--primary-maroon-light);
+  box-shadow: 3px 3px 8px var(--primary-maroon-shadow);
+}
+
+input[type="radio"] {
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  border: 2px solid #cbd5e0;
+  border-radius: 50%;
+  margin-right: 15px;
+  outline: none;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s;
+}
+
+input[type="radio"]:checked {
+  border-color: var(--primary-maroon);
+  background: var(--primary-maroon);
+  box-shadow: inset 0 0 0 4px white;
+}
+
+/* --- INPUT & TEXTAREA MEDAN TANAH LIAT --- */
+input[type="text"], input[type="date"], select, textarea {
+  width: 100%;
+  padding: 16px 20px; /* Input field lebih tinggi & lega */
+  border: none;
+  border-radius: var(--radius-md);
+  background: #f7f9fb;
+  color: var(--text-main);
+  font-family: inherit;
+  font-size: 1rem;
+  box-shadow: 
+    inset 4px 4px 8px var(--shadow-dark),
+    inset -3px -3px 6px var(--shadow-light);
+  transition: all 0.3s;
+}
+
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  background: white;
+  box-shadow: 
+    inset 2px 2px 4px rgba(0,0,0,0.05),
+    0 0 0 3px rgba(0, 128, 128, 0.2); /* Glow hijau tosca saat fokus */
+}
+
+textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+/* --- TOMBOL AKSI BUTTONS --- */
+button:not(.tab-btn):not(.play-btn) {
+  background: var(--primary-maroon);
+  color: white;
+  border: none;
+  padding: 14px 32px;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+  box-shadow: 
+    0 6px 15px var(--primary-maroon-shadow),
+    inset 0 2px 3px rgba(255,255,255,0.2);
+}
+
+button:hover:not(.tab-btn) {
+  background: var(--primary-maroon-light);
+  transform: translateY(-3px);
+  box-shadow: 
+    0 8px 20px var(--primary-maroon-shadow),
+    inset 0 2px 3px rgba(255,255,255,0.2);
+}
+
+button:active:not(.tab-btn) {
+  transform: translateY(1px);
+  box-shadow: 
+    0 2px 5px var(--primary-maroon-shadow),
+    inset 0 1px 2px rgba(0,0,0,0.1);
+}
+
+.secondary-btn { 
+  background: var(--accent-teal); 
+  box-shadow: 0 6px 15px var(--accent-teal-shadow); 
+}
+.secondary-btn:hover { background: var(--accent-teal-bright); }
+
+.danger-btn { 
+  background: #c0392b; 
+  box-shadow: 0 6px 15px rgba(192, 57, 43, 0.3); 
+}
+
+.play-btn {
+  background: var(--accent-teal);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 50px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 20px;
+  box-shadow: 4px 4px 8px var(--accent-teal-shadow);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.play-btn::before { content: '▶'; font-size: 0.9em; }
+.play-btn:hover { background: var(--accent-teal-bright); transform: scale(1.03); }
+
+/* --- NOTIFICATION BOXES --- */
+.note, .warning {
+  padding: 25px;
+  border-radius: var(--radius-lg);
+  margin: 30px 0;
+  position: relative;
+}
+
+.note {
+  background: #e6fffa; /* Hijau tosca sangat muda */
+  border-left: 6px solid var(--accent-teal);
+  color: #234e52;
+  box-shadow: 3px 3px 8px rgba(0,0,0,0.05);
+}
+
+.warning {
+  background: #fff5f5; /* Merah maroon sangat muda */
+  border-left: 6px solid var(--primary-maroon);
+  color: #742a2a;
+  box-shadow: 3px 3px 8px rgba(0,0,0,0.05);
+}
+
+/* --- HASIL PENILAIAN GRID --- */
+.result-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 25px;
+  margin: 35px 0;
+}
+
+.result-item {
+  background: white;
+  padding: 25px;
+  border-radius: var(--radius-lg);
+  text-align: center;
+  box-shadow: 
+    6px 6px 12px var(--shadow-dark),
+    -4px -4px 8px var(--shadow-light);
+  border-top: 4px solid var(--accent-teal);
+}
+
+.result-item strong {
+  display: block;
+  margin-bottom: 12px;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.status-box {
+  padding: 30px;
+  border-radius: var(--radius-xl);
+  font-weight: 800;
+  font-size: 1.3rem;
+  text-align: center;
+  margin: 40px 0;
+  box-shadow: inset 3px 3px 6px rgba(0,0,0,0.1);
+}
+
+.status-pass { background: #d4edda; color: #155724; border: 2px solid #c3e6cb; }
+.status-fail { background: #f8d7da; color: #721c24; border: 2px solid #f5c6cb; }
+.status-pending { background: #fff3cd; color: #856404; border: 2px solid #ffeeba; }
+
+/* --- TABLE STYLING --- */
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin: 30px 0;
+  background: white;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 4px 4px 10px rgba(0,0,0,0.05);
+}
+
+th {
+  background: var(--primary-maroon);
+  color: white;
+  font-weight: 700;
+  padding: 18px;
+  text-align: left;
+  border-bottom: 2px solid #5a1720;
+}
+
+td {
+  padding: 15px 18px;
+  border-bottom: 1px solid #f0f0f0;
+  color: #555;
+}
+
+tr:last-child td { border-bottom: none; }
+tr:hover td { background: #fdf2f2; /* Hover merah muda tipis */ }
+
+/* --- DETAILS/SUMMARY --- */
+details {
+  background: white;
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  margin: 20px 0;
+  box-shadow: 3px 3px 8px rgba(0,0,0,0.05);
+  border: 1px solid #eee;
+}
+
+summary {
+  font-weight: 700;
+  color: var(--primary-maroon);
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+summary::-webkit-details-marker { display: none; }
+summary::after { content: '+'; font-size: 1.4rem; color: var(--accent-teal); }
+details[open] summary::after { content: '-'; }
+
+/* --- RESPONSIVE --- */
+@media (max-width: 768px) {
+  .container { padding: 20px 15px; }
+  header { padding: 30px 20px; }
+  .tab-panel { padding: 25px 20px; } /* Tetap lega di mobile */
+  .tabs { gap: 10px; }
+  .tab-btn { padding: 10px 18px; font-size: 0.9rem; }
+  .question-card { padding: 20px; }
+}
+
+/* ========================================================
+   PRINT MODE OPTIMIZATION (ANTI-BLANK & PERFECT REPORT)
+   ======================================================== */
+@page {
+  size: A4 portrait;
+  margin: 12mm 10mm 12mm 10mm;
+}
+
+@media print {
+  * {
+    animation: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  body {
+    background: #ffffff !important;
+    background-image: none !important;
+    color: #1a1a1a !important;
+    font-family: 'Poppins', 'Zen Maru Gothic', sans-serif !important;
+    font-size: 11pt !important;
+    line-height: 1.5 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Sembunyikan elemen login dan elemen interaktif */
+  #loginScreen,
+  .no-print,
+  .tabs,
+  .header-actions,
+  button,
+  .play-btn,
+  audio,
+  .role-buttons {
+    display: none !important;
+  }
+
+  /* Tampilkan container aplikasi */
+  #app {
+    display: block !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .container {
+    max-width: 100% !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* Header resmi saat dicetak */
+  header {
+    display: block !important;
+    background: #f8fafc !important;
+    color: #0f172a !important;
+    border-radius: 0 !important;
+    border-bottom: 2px solid #0f172a !important;
+    box-shadow: none !important;
+    margin-bottom: 15px !important;
+    padding: 10px 0 !important;
+    text-align: left !important;
+  }
+
+  header::before {
+    display: none !important;
+  }
+
+  header h1 {
+    font-size: 16pt !important;
+    color: #7a1f2b !important;
+    margin: 0 0 4px !important;
+  }
+
+  #userInfo {
+    display: block !important;
+    font-size: 10.5pt !important;
+    font-weight: 600 !important;
+    color: #334155 !important;
+    margin: 0 !important;
+  }
+
+  /* Panel Soal & Konten */
+  .tab-panel {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    background: #ffffff !important;
+    border: none !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    margin-bottom: 20px !important;
+    padding: 0 !important;
+  }
+
+  /* Sembunyikan panel bank audio dan panduan saat mencetak */
+  #panel-bankaudio,
+  #panel-panduan {
+    display: none !important;
+  }
+
+  .tab-panel h2 {
+    font-size: 13pt !important;
+    color: #7a1f2b !important;
+    border-bottom: 1.5px solid #cbd5e1 !important;
+    padding-bottom: 5px !important;
+    margin: 15px 0 10px !important;
+    page-break-after: avoid !important;
+    break-after: avoid !important;
+  }
+
+  .question-card {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    background: #ffffff !important;
+    border: 1px solid #e2e8f0 !important;
+    border-left: 4px solid #008080 !important;
+    border-radius: 6px !important;
+    box-shadow: none !important;
+    margin-bottom: 12px !important;
+    padding: 10px 14px !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  .passage {
+    background: #f1f5f9 !important;
+    border-left: 3px solid #94a3b8 !important;
+    padding: 8px 12px !important;
+    margin-bottom: 10px !important;
+    font-size: 11pt !important;
+  }
+
+  /* Input dan field form */
+  input[type="text"], textarea, select {
+    border: 1px solid #94a3b8 !important;
+    background: #ffffff !important;
+    color: #0f172a !important;
+    box-shadow: none !important;
+    padding: 4px 8px !important;
+  }
+
+  input[type="radio"], input[type="checkbox"] {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Result Grid in Print */
+  .result-grid {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 8px !important;
+    margin-bottom: 15px !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  .result-item {
+    border: 1px solid #cbd5e1 !important;
+    padding: 8px !important;
+    border-radius: 6px !important;
+    background: #f8fafc !important;
+    text-align: center !important;
+  }
+
+  .status-box, .note {
+    border: 1px solid #cbd5e1 !important;
+    background: #f8fafc !important;
+    padding: 10px !important;
+    border-radius: 6px !important;
+  }
+
+  a[href]:after { content: "" !important; }
+}
+
+/* PENGAMANAN MODE PESERTA */
+body:not(.teacher) .teacher-only,
+body:not(.teacher) select[id$="Score"],       /* Sembunyikan dropdown skor */
+body:not(.teacher) details.summary-guru {     /* Sembunyikan blok detail guru */
+  display: none !important;
+}

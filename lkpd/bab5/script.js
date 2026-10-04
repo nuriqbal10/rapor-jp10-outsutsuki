@@ -469,3 +469,14 @@ window.addEventListener("beforeprint", function(){
     showApp(s);
   }
 });
+
+
+// Sync theme from parent JP10 Portal
+window.addEventListener('message', function(e) {
+  if (e.data && e.data.type === 'JP10_THEME_SYNC') {
+    document.body.classList.remove('theme-sakura', 'theme-ocean', 'theme-cyber', 'theme-clay-apple');
+    if (e.data.theme) document.body.classList.add('theme-' + e.data.theme);
+    if (e.data.isDark) document.body.classList.add('dark');
+    else document.body.classList.remove('dark');
+  }
+});

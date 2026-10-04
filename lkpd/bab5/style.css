@@ -668,3 +668,49 @@ body:not(.teacher) select[id$="Score"],       /* Sembunyikan dropdown skor */
 body:not(.teacher) details.summary-guru {     /* Sembunyikan blok detail guru */
   display: none !important;
 }
+
+/* ==========================================
+   JP10 PORTAL THEME OVERRIDES (MATCHING THEME)
+   ========================================== */
+body.theme-sakura {
+  --primary: #f43f5e;
+  --primary-dark: #e11d48;
+  --bg: #fff1f4;
+  --card: #ffffff;
+  --border: #fecdd3;
+  --text: #4c1d28;
+}
+body.theme-sakura header {
+  background: linear-gradient(135deg, #f43f5e, #fb7185) !important;
+}
+
+body.theme-ocean {
+  --primary: #0891b2;
+  --primary-dark: #0e7490;
+  --bg: #ecfeff;
+  --card: #ffffff;
+  --border: #a5f3fc;
+  --text: #164e63;
+}
+body.theme-ocean header {
+  background: linear-gradient(135deg, #0891b2, #0284c7) !important;
+}
+
+body.theme-cyber {
+  --primary: #9333ea;
+  --primary-dark: #7e22ce;
+  --bg: #0a0a16;
+  --card: #111126;
+  --border: rgba(168, 85, 247, 0.4);
+  --text: #e0e7ff;
+}
+body.theme-cyber header {
+  background: linear-gradient(135deg, #9333ea, #4f46e5) !important;
+}
+
+body.dark {
+  --bg: #0e1015;
+  --card: #181b22;
+  --border: #30363d;
+  --text: #f0f6fc;
+}

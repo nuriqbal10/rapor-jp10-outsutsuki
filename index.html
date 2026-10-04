@@ -748,6 +748,9 @@
         <button id="btn-subtab-feedback" onclick="switchTeacherSubTab('feedback')" class="clay-pill px-3.5 py-2 text-xs sm:text-sm font-semibold transition-all flex items-center gap-2 bg-white/80 dark:bg-gray-800/80 text-apple-subtext hover:text-apple-darkgray dark:hover:text-white">
           <span>✍️</span> <span>Catatan Sensei</span>
         </button>
+        <button id="btn-subtab-settings" onclick="switchTeacherSubTab('settings')" class="clay-pill px-3.5 py-2 text-xs sm:text-sm font-semibold transition-all flex items-center gap-2 bg-white/80 dark:bg-gray-800/80 text-apple-subtext hover:text-apple-darkgray dark:hover:text-white">
+          <span>⚙️</span> <span>Pengaturan Sensei</span>
+        </button>
       </div>
 
       <div class="hidden md:flex items-center gap-2 text-xs text-apple-subtext font-medium px-2">
@@ -1396,12 +1399,184 @@
 
     </section>
 
+    
     <!-- ==========================================
-         8. STUDENT DIRECTORY (CLAY CARDS GRID)
+         PANEL 6: PENGATURAN & PREFERENSI SENSEI
          ========================================== -->
+    <div id="panel-subtab-settings" class="teacher-subtab-panel space-y-6 hidden">
+      <div class="clay-card p-6 md:p-8 space-y-8 border-2 border-slate-200/60 dark:border-slate-800">
+        
+        <!-- Header Section -->
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-gray-200/60 dark:border-gray-800">
+          <div>
+            <div class="flex items-center gap-2 flex-wrap mb-1">
+              <span class="px-3 py-1 rounded-full bg-gradient-to-r from-slate-700 to-indigo-900 text-white font-extrabold text-xs shadow-md flex items-center gap-1.5">
+                <span>⚙️</span> PUSAT KONTROL &amp; PREFERENSI
+              </span>
+              <span class="text-xs px-2.5 py-1 rounded-full bg-apple-blue/10 text-apple-blue font-bold">
+                Sensei Control Panel v3.5
+              </span>
+            </div>
+            <h2 class="text-xl md:text-2xl font-black tracking-tight">
+              Pengaturan Kelas &amp; Kustomisasi Rapor
+            </h2>
+            <p class="text-xs md:text-sm text-apple-subtext">
+              Atur ambang KKM, efek suara, tema visual, preferensi balapan, dan keamanan PIN secara langsung.
+            </p>
+          </div>
+
+          <div class="flex items-center gap-2">
+            <button onclick="resetSenseiSettings()" class="clay-pill px-4 py-2 text-xs font-bold text-rose-500 hover:bg-rose-50 dark:hover:bg-rose-950/30 transition-all flex items-center gap-1.5">
+              <span>🔄</span> Reset Default
+            </button>
+            <button onclick="saveSenseiSettingsManual()" class="clay-pill px-4 py-2 text-xs font-bold bg-gradient-to-r from-emerald-500 to-teal-600 text-white shadow-md hover:scale-105 transition-all flex items-center gap-1.5">
+              <span>💾</span> Simpan Pengaturan
+            </button>
+          </div>
+        </div>
+
+        <!-- Grid of Settings Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+          <!-- CARD 1: KKM & TARGET KELULUSAN -->
+          <div class="clay-card p-6 space-y-4 rounded-3xl bg-white/70 dark:bg-gray-800/70 border border-gray-100 dark:border-gray-700/60">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-2.5">
+                <div class="w-10 h-10 rounded-2xl bg-amber-500/10 text-amber-600 flex items-center justify-center text-xl font-bold">
+                  🎯
+                </div>
+                <div>
+                  <h3 class="font-extrabold text-sm">Ambang Batas KKM (Target)</h3>
+                  <p class="text-xs text-apple-subtext">Standar kelulusan minimum per siswa</p>
+                </div>
+              </div>
+              <span id="setting-kkm-display" class="px-3 py-1 rounded-xl bg-amber-500/15 text-amber-600 dark:text-amber-400 font-black text-sm font-mono">
+                75 / 100
+              </span>
+            </div>
+
+            <div class="space-y-2 pt-2">
+              <input type="range" id="setting-kkm-slider" min="60" max="90" value="75" step="1" oninput="handleKKMChange(this.value)" class="w-full accent-amber-500 cursor-pointer h-2 bg-gray-200 dark:bg-gray-700 rounded-lg">
+              <div class="flex justify-between text-[11px] font-mono text-apple-subtext">
+                <span>60 (Ringan)</span>
+                <span>75 (Standar Nasional)</span>
+                <span>90 (Intensif)</span>
+              </div>
+            </div>
+
+            <div class="pt-2 flex items-center gap-2">
+              <span class="text-xs text-apple-subtext font-medium">Preset Cepat:</span>
+              <button onclick="setKKMPreset(70)" class="px-2.5 py-1 rounded-lg text-xs font-bold clay-inset hover:bg-gray-100 dark:hover:bg-gray-700">70</button>
+              <button onclick="setKKMPreset(75)" class="px-2.5 py-1 rounded-lg text-xs font-bold clay-inset bg-amber-500/10 text-amber-600 hover:bg-amber-500/20">75 (Bawaan)</button>
+              <button onclick="setKKMPreset(80)" class="px-2.5 py-1 rounded-lg text-xs font-bold clay-inset hover:bg-gray-100 dark:hover:bg-gray-700">80</button>
+              <button onclick="setKKMPreset(85)" class="px-2.5 py-1 rounded-lg text-xs font-bold clay-inset hover:bg-gray-100 dark:hover:bg-gray-700">85</button>
+            </div>
+          </div>
+
+          <!-- CARD 2: AUDIO & EFEK SUARA (SFX) -->
+          <div class="clay-card p-6 space-y-4 rounded-3xl bg-white/70 dark:bg-gray-800/70 border border-gray-100 dark:border-gray-700/60">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-2.5">
+                <div class="w-10 h-10 rounded-2xl bg-purple-500/10 text-purple-600 flex items-center justify-center text-xl font-bold">
+                  🔊
+                </div>
+                <div>
+                  <h3 class="font-extrabold text-sm">Preferensi Suara &amp; SFX</h3>
+                  <p class="text-xs text-apple-subtext">Efek suara balapan &amp; notifikasi kuis</p>
+                </div>
+              </div>
+              <button id="setting-audio-master-btn" onclick="toggleMasterAudio()" class="px-3 py-1 rounded-xl bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 font-extrabold text-xs">
+                AKTIF (ON)
+              </button>
+            </div>
+
+            <div class="space-y-3 pt-1 text-xs">
+              <label class="flex items-center justify-between p-2 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700/40 cursor-pointer">
+                <span class="font-medium">🎺 Efek Balapan Barongsai (Drum &amp; Terompet)</span>
+                <input type="checkbox" id="setting-sfx-race" checked onchange="saveSenseiSettings()" class="accent-purple-600 w-4 h-4 cursor-pointer">
+              </label>
+              <label class="flex items-center justify-between p-2 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700/40 cursor-pointer">
+                <span class="font-medium">🗣️ Komentator Suara Audio (Speech Synthesis)</span>
+                <input type="checkbox" id="setting-sfx-speech" checked onchange="saveSenseiSettings()" class="accent-purple-600 w-4 h-4 cursor-pointer">
+              </label>
+              <label class="flex items-center justify-between p-2 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700/40 cursor-pointer">
+                <span class="font-medium">🔔 Suara Kuis Kanji &amp; Konfeti Kemenangan</span>
+                <input type="checkbox" id="setting-sfx-quiz" checked onchange="saveSenseiSettings()" class="accent-purple-600 w-4 h-4 cursor-pointer">
+              </label>
+            </div>
+          </div>
+
+          <!-- CARD 3: TEMA WARNA & ESTETIKA -->
+          <div class="clay-card p-6 space-y-4 rounded-3xl bg-white/70 dark:bg-gray-800/70 border border-gray-100 dark:border-gray-700/60">
+            <div class="flex items-center gap-2.5">
+              <div class="w-10 h-10 rounded-2xl bg-sky-500/10 text-sky-600 flex items-center justify-center text-xl font-bold">
+                🎨
+              </div>
+              <div>
+                <h3 class="font-extrabold text-sm">Tema Estetika Visual</h3>
+                <p class="text-xs text-apple-subtext">Pilihan warna aksen dan mode tampilan</p>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-2.5 pt-1 text-xs">
+              <button onclick="setThemePreset('clay-apple')" class="p-3 rounded-2xl border-2 border-blue-500 bg-blue-50/50 dark:bg-blue-950/20 text-left transition-all">
+                <span class="font-bold block text-apple-darkgray dark:text-white">🍏 Apple Clay</span>
+                <span class="text-[10px] text-apple-subtext">Minimalis, bersih, elegan</span>
+              </button>
+              <button onclick="setThemePreset('sakura')" class="p-3 rounded-2xl border border-gray-200 dark:border-gray-700 hover:border-rose-400 bg-rose-50/30 dark:bg-rose-950/20 text-left transition-all">
+                <span class="font-bold block text-rose-600 dark:text-rose-400">🌸 Sakura Haru</span>
+                <span class="text-[10px] text-apple-subtext">Sentuhan pastel khas Jepang</span>
+              </button>
+              <button onclick="setThemePreset('ocean')" class="p-3 rounded-2xl border border-gray-200 dark:border-gray-700 hover:border-cyan-400 bg-cyan-50/30 dark:bg-cyan-950/20 text-left transition-all">
+                <span class="font-bold block text-cyan-600 dark:text-cyan-400">🌊 Ocean Kanagawa</span>
+                <span class="text-[10px] text-apple-subtext">Biru laut segar ombak Hokusai</span>
+              </button>
+              <button onclick="setThemePreset('cyber')" class="p-3 rounded-2xl border border-gray-200 dark:border-gray-700 hover:border-purple-400 bg-purple-50/30 dark:bg-purple-950/20 text-left transition-all">
+                <span class="font-bold block text-purple-600 dark:text-purple-400">⚡ Cyber Nihon</span>
+                <span class="text-[10px] text-apple-subtext">Futuristik neon Tokyo vibe</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- CARD 4: MANAJEMEN PIN & KEAMANAN -->
+          <div class="clay-card p-6 space-y-4 rounded-3xl bg-white/70 dark:bg-gray-800/70 border border-gray-100 dark:border-gray-700/60">
+            <div class="flex items-center gap-2.5">
+              <div class="w-10 h-10 rounded-2xl bg-rose-500/10 text-rose-600 flex items-center justify-center text-xl font-bold">
+                🔑
+              </div>
+              <div>
+                <h3 class="font-extrabold text-sm">Manajemen PIN &amp; Akses Kelas</h3>
+                <p class="text-xs text-apple-subtext">Kunci sandi pengajar &amp; perlindungan rapor</p>
+              </div>
+            </div>
+
+            <div class="space-y-3 pt-1 text-xs">
+              <div class="flex items-center justify-between p-3 rounded-2xl clay-inset">
+                <div>
+                  <span class="font-bold block">PIN Pengajar (Sensei):</span>
+                  <span class="text-[11px] text-apple-subtext font-mono">Digunakan saat login Portal Guru</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <input type="text" id="setting-pin-teacher" value="sensei123" class="w-24 text-center py-1.5 px-2 rounded-xl font-mono font-bold bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 outline-none">
+                  <button onclick="updateTeacherPin()" class="px-2.5 py-1.5 rounded-xl bg-purple-600 text-white font-bold text-xs hover:bg-purple-700">Ubah</button>
+                </div>
+              </div>
+
+              <div class="flex items-center justify-between p-3 rounded-2xl clay-inset">
+                <div>
+                  <span class="font-bold block">PIN Standar Siswa:</span>
+                  <span class="text-[11px] text-apple-subtext font-mono">Kode default akses 28 siswa</span>
+                </div>
+                <span class="px-3 py-1 rounded-xl bg-gray-200 dark:bg-gray-700 font-mono font-bold">1234</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
     </div>
-
-
+  
   </main>
 
   <!-- ========================================================
@@ -4112,7 +4287,7 @@
         // ==========================================
     // 📊 TEACHER SUB-TAB ENGINE (APPLE SEGMENTED CONTROLS)
     // ==========================================
-    let currentTeacherSubTab = 'overview'; // 'overview' | 'students' | 'grandprix' | 'heatmap' | 'feedback'
+    let currentTeacherSubTab = 'overview'; // 'overview' | 'students' | 'grandprix' | 'heatmap' | 'feedback' | 'settings'
 
     function switchTeacherSubTab(subtab) {
       currentTeacherSubTab = subtab;
@@ -4126,7 +4301,8 @@
         students: document.getElementById('panel-subtab-students'),
         grandprix: document.getElementById('panel-subtab-grandprix'),
         heatmap: document.getElementById('panel-subtab-heatmap'),
-        feedback: document.getElementById('panel-subtab-feedback')
+        feedback: document.getElementById('panel-subtab-feedback'),
+        settings: document.getElementById('panel-subtab-settings')
       };
 
       const btns = {
@@ -4134,7 +4310,8 @@
         students: document.getElementById('btn-subtab-students'),
         grandprix: document.getElementById('btn-subtab-grandprix'),
         heatmap: document.getElementById('btn-subtab-heatmap'),
-        feedback: document.getElementById('btn-subtab-feedback')
+        feedback: document.getElementById('btn-subtab-feedback'),
+        settings: document.getElementById('btn-subtab-settings')
       };
 
       const activeBtnClass = 'clay-pill px-3.5 py-2 text-xs sm:text-sm font-bold transition-all flex items-center gap-2 bg-gradient-to-r from-apple-blue to-indigo-600 text-white shadow-md scale-[1.02]';
@@ -5203,9 +5380,30 @@
         return;
       }
 
+      const kkmTarget = getSenseiKKM();
       list.forEach(s => {
         const card = document.createElement('div');
-        card.className = 'clay-card p-5 rounded-[26px] flex flex-col justify-between cursor-pointer relative group';
+        card.className = 'clay-card p-5 rounded-[26px] flex flex-col justify-between cursor-pointer relative group transition-all duration-300 hover:shadow-xl hover:-translate-y-1';
+
+        // Badges Gamifikasi
+        let badgeHtml = '';
+        if (s.rank === 1) {
+          badgeHtml += '<span class="px-2 py-0.5 rounded-full text-[10px] font-black bg-amber-500 text-white shadow-sm flex items-center gap-1">👑 Juara 1</span>';
+        } else if (s.rank === 2) {
+          badgeHtml += '<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-slate-300 text-slate-800 shadow-sm flex items-center gap-1">🥈 Juara 2</span>';
+        } else if (s.rank === 3) {
+          badgeHtml += '<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-700 text-white shadow-sm flex items-center gap-1">🥉 Juara 3</span>';
+        }
+
+        if (s.summary.compositeScore >= 95) {
+          badgeHtml += '<span class="px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-gradient-to-r from-purple-600 to-pink-500 text-white shadow-sm">💯 Manten</span>';
+        }
+
+        if (s.summary.compositeScore >= kkmTarget) {
+          badgeHtml += '<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/15 text-emerald-600 dark:text-emerald-400">✅ Tuntas</span>';
+        } else {
+          badgeHtml += '<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-rose-500/15 text-rose-600 dark:text-rose-400">⚠️ Remedial</span>';
+        }
 
         const pct = Math.min(100, s.summary.compositeScore);
         const radius = 22;
@@ -5234,11 +5432,9 @@
               </div>
             </div>
 
-            <div class="flex items-center gap-1.5 flex-wrap mt-4">
-              <span class="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-apple-blue/10 dark:bg-apple-blue/20 text-apple-blue">
-                Rank #${s.rank}
-              </span>
-              <span class="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-apple-purple/10 text-apple-purple">
+            <div class="flex items-center gap-1.5 flex-wrap mt-3">
+              ${badgeHtml}
+              <span class="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-apple-purple/10 text-apple-purple">
                 ${s.playerLevel}
               </span>
             </div>
@@ -5248,6 +5444,14 @@
             <span onclick="openStudentModal(MASTER_DATA.levels['${currentLevel}'].students[${s.no - 1}])">${s.summary.completedBabs} / 18 Bab Aktif</span>
             
             <div class="flex items-center gap-1.5">
+              <!-- Mini Certificate Button -->
+              <button 
+                onclick="event.stopPropagation(); openJapaneseCertificate(MASTER_DATA.levels['${currentLevel}'].students[${s.no - 1}])" 
+                class="p-1.5 rounded-lg bg-amber-500/10 text-amber-600 dark:text-amber-400 hover:bg-amber-500 hover:text-white transition-colors"
+                title="Lihat Piagam Penghargaan Jepang (賞状)"
+              >
+                📜
+              </button>
               <!-- Mini Print PDF Button on Card -->
               <button 
                 onclick="event.stopPropagation(); openPrintModal(MASTER_DATA.levels['${currentLevel}'].students[${s.no - 1}])" 
@@ -16655,6 +16859,123 @@ const irodoriAudioDb = {
   
   </script>
 
+
+  <!-- ========================================================
+       📜 JAPANESE MERIT CERTIFICATE MODAL (賞状 - SHOUJOU)
+       ======================================================== -->
+  <div id="japaneseCertificateModal" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-md hidden flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
+    <div class="w-full max-w-3xl flex flex-col overflow-hidden animate-modal-pop shadow-2xl relative my-auto">
+      
+      <!-- Top Action Bar -->
+      <div class="no-print bg-slate-900 text-white p-3.5 rounded-t-2xl flex items-center justify-between gap-3 border-b border-slate-700">
+        <div class="flex items-center gap-2">
+          <span class="text-xl">📜</span>
+          <div>
+            <h3 class="font-extrabold text-sm">Piagam Penghargaan Resmi (賞状 - Shoujou)</h3>
+            <p class="text-[11px] text-slate-400">Sertifikat Kelulusan Berstandar Jepang Formal</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-2">
+          <button onclick="printJapaneseCertificate()" class="px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-amber-500 to-yellow-600 text-white font-extrabold text-xs shadow-md hover:scale-105 transition-all flex items-center gap-1.5">
+            <span>🖨️</span> Cetak / Simpan PDF
+          </button>
+          <button onclick="closeJapaneseCertificate()" class="p-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 transition-colors">
+            ✕
+          </button>
+        </div>
+      </div>
+
+      <!-- Printable Certificate Canvas -->
+      <div id="certificate-print-area" class="bg-[#fcfaf5] text-slate-900 p-8 sm:p-12 rounded-b-2xl border-8 border-double border-amber-700/60 shadow-inner relative overflow-hidden font-serif">
+        
+        <!-- Traditional Japanese Corner Patterns -->
+        <div class="absolute top-2 left-2 text-amber-700/30 text-2xl select-none">❖</div>
+        <div class="absolute top-2 right-2 text-amber-700/30 text-2xl select-none">❖</div>
+        <div class="absolute bottom-2 left-2 text-amber-700/30 text-2xl select-none">❖</div>
+        <div class="absolute bottom-2 right-2 text-amber-700/30 text-2xl select-none">❖</div>
+
+        <!-- Watermark / Background Emblem -->
+        <div class="absolute inset-0 flex items-center justify-center pointer-events-none opacity-[0.03]">
+          <span class="text-[180px] font-black tracking-widest text-red-900 font-serif">筒</span>
+        </div>
+
+        <!-- Certificate Content -->
+        <div class="relative z-10 text-center space-y-6">
+          
+          <!-- Top Title -->
+          <div class="space-y-1">
+            <h1 class="text-3xl sm:text-5xl font-black tracking-[0.25em] text-red-900 drop-shadow-sm font-serif">
+              賞 状
+            </h1>
+            <p class="text-xs uppercase tracking-[0.3em] font-sans text-amber-800 font-bold">
+              CERTIFICATE OF JAPANESE PROFICIENCY &amp; EXCELLENCE
+            </p>
+          </div>
+
+          <!-- Student Name Section -->
+          <div class="py-4 border-b border-amber-300/60">
+            <p class="text-xs text-stone-500 tracking-wider font-sans mb-1">Dianugerahkan kepada / 授与:</p>
+            <h2 id="cert-student-name" class="text-2xl sm:text-4xl font-extrabold text-slate-900 font-sans tracking-wide">
+              NAMA SISWA
+            </h2>
+            <p id="cert-student-sub" class="text-xs text-stone-600 font-mono mt-1">
+              No. Absen #01 • Kelas JP10 Outsutsuki
+            </p>
+          </div>
+
+          <!-- Japanese Citation Body -->
+          <div class="max-w-xl mx-auto text-xs sm:text-sm leading-relaxed text-stone-800 text-justify sm:text-center space-y-3">
+            <p class="font-serif tracking-wider">
+              貴殿は、大筒木学園日本語講座 <span id="cert-level-name" class="font-bold text-red-900">初級1 A2.1</span> において、熱心に勉学に励み、頭書の優秀な成績を収められました。
+            </p>
+            <p class="text-xs text-stone-600 italic font-sans">
+              "Atas dedikasi, kedisiplinan, dan ketekunan luar biasa dalam menyelesaikan materi pembelajaran kurikulum Irodori, maka dianugerahi sertifikat prestasi ini."
+            </p>
+          </div>
+
+          <!-- Score & Badge Row -->
+          <div class="flex items-center justify-center gap-4 py-3">
+            <div class="px-4 py-2 rounded-xl bg-amber-100/70 border border-amber-300 text-center">
+              <span class="text-[10px] text-amber-800 block uppercase font-bold font-sans">Nilai Kumulatif</span>
+              <span id="cert-student-score" class="text-xl sm:text-2xl font-black text-amber-900 font-sans">92.5</span>
+            </div>
+            <div class="px-4 py-2 rounded-xl bg-amber-100/70 border border-amber-300 text-center">
+              <span class="text-[10px] text-amber-800 block uppercase font-bold font-sans">Predikat</span>
+              <span id="cert-student-grade" class="text-xl sm:text-2xl font-black text-emerald-800 font-sans">Grade A</span>
+            </div>
+            <div class="px-4 py-2 rounded-xl bg-amber-100/70 border border-amber-300 text-center">
+              <span class="text-[10px] text-amber-800 block uppercase font-bold font-sans">Peringkat Kelas</span>
+              <span id="cert-student-rank" class="text-xl sm:text-2xl font-black text-purple-900 font-sans">Rank #1</span>
+            </div>
+          </div>
+
+          <!-- Bottom Footer / Hanko Stamp & Date -->
+          <div class="pt-6 flex items-end justify-between text-left text-xs text-stone-700">
+            <div>
+              <p id="cert-date-jp" class="font-serif">令和八年 十月吉日</p>
+              <p id="cert-date-en" class="text-[11px] font-sans text-stone-500">Oktober 2026</p>
+            </div>
+
+            <!-- Signature & Red Hanko Seal -->
+            <div class="flex items-center gap-3">
+              <div class="text-right">
+                <p class="font-serif text-sm font-bold">大筒木日本語研修センター</p>
+                <p class="text-xs font-sans text-stone-600">Nur Iqbal Sensei (指導講師)</p>
+              </div>
+              <!-- Hanko Red Seal Box -->
+              <div class="w-14 h-14 border-2 border-red-700 rounded-md flex items-center justify-center text-red-700 font-serif font-black text-xs rotate-[-3deg] select-none shadow-sm p-1 leading-tight text-center bg-red-500/5">
+                大筒木<br>学園印
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+  
 </body>
 </html>
 

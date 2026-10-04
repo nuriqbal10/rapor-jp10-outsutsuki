@@ -4933,6 +4933,18 @@
         audioTracks: 22,
         questionsCount: 55,
         webhookUrl: 'https://script.google.com/macros/s/AKfycbydufvt6cBNIKrclA71S1Vwlq_SlKl52D1OmhWi0VWGKnKsrXcoe4iOWt5hufj1K4zk/exec'
+      },
+      {
+        chapter: 6,
+        level: 'A22',
+        levelBadge: '初級2 A2.2 [Checkpoint 1]',
+        title: 'いろいろなところに行けて、よかったです',
+        sub: 'Bab 6 • Pengalaman & kesan wisata, pola kegiatan (たり〜たり), rasa senang (〜てよかった), dan durasi (〜泊〜日)',
+        path: 'lkpd/bab6/index.html',
+        githubUrl: 'https://github.com/nuriqbal10/LKPD-Irodori-A2.2-Bab-6',
+        audioTracks: 20,
+        questionsCount: 55,
+        webhookUrl: 'https://script.google.com/macros/s/AKfycbydufvt6cBNIKrclA71S1Vwlq_SlKl52D1OmhWi0VWGKnKsrXcoe4iOWt5hufj1K4zk/exec'
       }
     ];
 
@@ -4954,7 +4966,7 @@
           : 'bg-white/80 dark:bg-gray-800/80 text-apple-subtext hover:text-apple-darkgray dark:hover:text-white font-semibold';
         return `
           <button type="button" onclick="loadLkpdChapter(${ch.chapter})" class="clay-pill px-3.5 py-2 rounded-2xl text-xs sm:text-sm transition-all duration-300 flex items-center gap-2 ${activeClass}">
-            <span class="text-sm">${ch.chapter === 1 ? '📕' : ch.chapter === 2 ? '📗' : ch.chapter === 3 ? '📘' : ch.chapter === 4 ? '📙' : '🗺️'}</span>
+            <span class="text-sm">${ch.chapter === 1 ? '📕' : ch.chapter === 2 ? '📗' : ch.chapter === 3 ? '📘' : ch.chapter === 4 ? '📙' : ch.chapter === 5 ? '🗺️' : '🏁'}</span>
             <span>Bab ${ch.chapter}</span>
             <span class="text-[10px] px-1.5 py-0.5 rounded-md ${isActive ? 'bg-white/20 text-white' : 'bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-300'} font-bold">${ch.levelBadge}</span>
           </button>

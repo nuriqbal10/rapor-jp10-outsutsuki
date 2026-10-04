@@ -2793,7 +2793,7 @@
 
     <!-- Seamless Embedded Application Iframe -->
     <div id="lkpd-frame-box" class="clay-card w-full rounded-3xl overflow-hidden p-2 transition-all duration-300">
-      <iframe id="lkpd-hub-iframe" src="../github/LKPD-Irodori-A2.1-Bab-1-Outsutsuki-Kurasu/index.html" class="w-full h-[88vh] border-0 transition-all duration-300" title="LKPD Interaktif Bahasa Jepang"></iframe>
+      <iframe id="lkpd-hub-iframe" src="lkpd/bab1/index.html" class="w-full h-[88vh] border-0 transition-all duration-300" title="LKPD Interaktif Bahasa Jepang"></iframe>
     </div>
 
   </main>
@@ -3905,6 +3905,12 @@
       }
     } catch(e) {}
   }
+
+  window.addEventListener('message', function(e) {
+    if (e.data && (e.data.type === 'JP10_REQUEST_THEME' || e.data.type === 'JP10_LKPD_READY')) {
+      syncThemeToIframes(senseiSettings ? senseiSettings.theme : 'clay-apple');
+    }
+  });
 
   let currentLevel = 'A21';
     let activeStudent = null;

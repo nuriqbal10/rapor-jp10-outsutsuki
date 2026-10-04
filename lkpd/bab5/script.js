@@ -102,7 +102,16 @@ function renderTabs(){
     panelsEl.appendChild(section);
   });
 }
-function openTab(tabId,btn){ document.querySelectorAll(".tab-panel").forEach(el=>el.classList.remove("active")); document.querySelectorAll(".tab-btn").forEach(el=>el.classList.remove("active")); const p=document.getElementById("panel-"+tabId); if(p)p.classList.add("active"); if(btn)btn.classList.add("active"); }
+function openTab(tabId, btn) {
+  document.querySelectorAll(".tab-panel").forEach(el => el.classList.remove("active"));
+  document.querySelectorAll(".tab-btn").forEach(el => el.classList.remove("active"));
+  const p = document.getElementById("panel-" + tabId);
+  if (p) p.classList.add("active");
+  if (btn) {
+    btn.classList.add("active");
+    try { btn.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" }); } catch(e) {}
+  }
+}
 
 function renderItem(item) {
   const isTeacher = currentRole === "teacher";
@@ -480,3 +489,10 @@ window.addEventListener('message', function(e) {
     else document.body.classList.remove('dark');
   }
 });
+
+// Request initial theme from parent portal
+try {
+  if (window.parent && window.parent !== window) {
+    window.parent.postMessage({ type: 'JP10_REQUEST_THEME' }, '*');
+  }
+} catch(e) {}

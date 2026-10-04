@@ -2674,7 +2674,7 @@
               IRODORI Kanji Studio & Lembar Kerja 20-Grid
             </h2>
             <span class="text-[10px] font-black px-2 py-0.5 rounded-md bg-rose-100 text-rose-700 dark:bg-rose-900/60 dark:text-rose-300">
-              18 Bab • 233 Kanji
+              54 Bab (A1 • A2.1 • A2.2) • 432+ Kanji
             </span>
             <span class="text-[10px] font-bold px-2 py-0.5 rounded-md bg-amber-100 text-amber-700 dark:bg-amber-900/60 dark:text-amber-300">
               UD Digi Kyokasho (教科書体)
@@ -5742,6 +5742,17 @@
           btn.className = 'px-3.5 py-1.5 rounded-full font-semibold text-apple-subtext hover:text-apple-darkgray dark:hover:text-white transition-all';
         }
       });
+
+      try {
+        const kanjiIframe = document.getElementById('kanji-studio-iframe');
+        if (kanjiIframe && kanjiIframe.contentWindow) {
+          const levelMap = { 'A1': 'A1', 'A21': 'A2.1', 'A22': 'A2.2' };
+          kanjiIframe.contentWindow.postMessage({
+            type: 'SET_KANJI_LEVEL',
+            level: levelMap[lvlKey] || 'A2.2'
+          }, '*');
+        }
+      } catch(e) {}
 
       renderLevelOverview();
     }

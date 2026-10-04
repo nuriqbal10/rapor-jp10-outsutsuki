@@ -597,7 +597,22 @@ function playItemAudio(id,btn){
     btn.textContent="Memutar…";
     let played=0;
     audio.onended=function(){ played++; if(played<times){audio.currentTime=0; const pr=audio.play(); if(pr&&pr.catch)pr.catch(onPlayErr);} else stopCurrentAudio(); };
-    audio.onerror=function(){ console.error("Audio error:",item.audioUrl); if(item.script)playTts(item.script,btn,times); else {alert("File audio tidak ditemukan/format tidak didukung:\n"+item.audioUrl); stopCurrentAudio();} };
+    audio.onerror=function(){
+      console.error("Audio error:",item.audioUrl);
+      if(!audio.dataset.retried){
+        audio.dataset.retried="1";
+        audio.src = (audio.src && audio.src.indexOf("%5B") !== -1) ? item.audioUrl : safeAudioSrc(item.audioUrl);
+        const retryPr = audio.play();
+        if(retryPr && retryPr.catch) retryPr.catch(function(e){
+          console.warn("Retry failed:", e);
+          if(item.script) playTts(item.script, btn, times);
+          else { alert("File audio tidak ditemukan/format tidak didukung:\n"+item.audioUrl); stopCurrentAudio(); }
+        });
+        return;
+      }
+      if(item.script) playTts(item.script,btn,times);
+      else { alert("File audio tidak ditemukan/format tidak didukung:\n"+item.audioUrl); stopCurrentAudio(); }
+    };
     audio.currentTime=0;
     const pr=audio.play();
     if(pr&&pr.catch)pr.catch(onPlayErr);

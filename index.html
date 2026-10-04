@@ -4843,6 +4843,7 @@
         if (kanjiView) kanjiView.classList.remove('hidden');
         if (btnKanji) btnKanji.className = 'px-3 py-1.5 rounded-full bg-white dark:bg-white/10 text-rose-500 shadow-sm font-bold transition-all flex items-center gap-1.5';
         initKanjiStudioUI();
+        if (typeof syncThemeToIframes === 'function') syncThemeToIframes(senseiSettings ? senseiSettings.theme : 'clay-apple');
         window.scrollTo({ top: 0, behavior: 'smooth' });
         return;
       }
@@ -4983,6 +4984,11 @@
         if (iframe.getAttribute('data-loaded-chapter') !== String(chNum)) {
           iframe.src = targetPath;
           iframe.setAttribute('data-loaded-chapter', String(chNum));
+          iframe.onload = () => {
+            if (typeof syncThemeToIframes === 'function') {
+              syncThemeToIframes(senseiSettings ? senseiSettings.theme : 'clay-apple');
+            }
+          };
         }
       }
     }

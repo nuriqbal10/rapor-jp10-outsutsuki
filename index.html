@@ -442,13 +442,18 @@
       left: 0;
       right: 0;
       height: 48px;
-      transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1);
       will-change: transform;
     }
 
     .race-bar-fill {
-      transition: width 0.45s cubic-bezier(0.16, 1, 0.3, 1);
       will-change: width;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+    }
+
+    .race-score-span {
+      font-variant-numeric: tabular-nums;
+      letter-spacing: -0.02em;
     }
 
     @keyframes gentleFloat {
@@ -3935,13 +3940,6 @@
     let classRadarChartInstance = null;
     let studentChapterChartInstance = null;
 
-    // Race Engine variables
-    let raceBab = 1;
-    let isRacePlaying = false;
-    let raceTimer = null;
-    let raceSpeed = 1.0;
-    let raceDisplayCount = 15;
-    let raceTimelineData = [];
     // Heatmap Diagnostik State
     let heatmapMode = 'class'; // 'class' | 'student'
     let heatmapUnit = 'pct'; // 'pct' | 'score'
@@ -4138,13 +4136,47 @@
     // ==========================================
     // 🏁 FLOURISH BAR CHART RACE ENGINE
     // ==========================================
+    let raceBab = 1;
+    let isRacePlaying = false;
+    let raceSpeed = 1.0;
+    let raceDisplayCount = 15;
+    let raceTimelineData = []; // Array of 19 frames: [0..18]
+    let raceStudentMap = {};
+
+    // High-FPS Flourish Tween Engine state
+    let raceAnimId = null;
+    let raceStepTimeout = null;
+    let raceCurrentScores = {}; // s.no -> current interpolated score (float)
+    let raceFromScores = {}; // s.no -> start score
+    let raceTargetScores = {}; // s.no -> target score
+    let raceTweenFromBab = 1;
+    let raceTweenToBab = 1;
+    let raceTweenStartTime = 0;
+    let raceTweenDuration = 1400; // ms
+
     function buildRaceTimelineData() {
       const lvl = MASTER_DATA.levels[currentLevel];
       if (!lvl) return;
 
       raceTimelineData = [];
+      raceStudentMap = {};
       const students = lvl.students;
 
+      // Frame 0: Semester start (0 pts for all)
+      const frame0 = students.map(s => {
+        raceStudentMap[s.no] = s;
+        return {
+          no: s.no,
+          name: s.name,
+          avatarColor: s.avatarColor,
+          cumScore: 0,
+          latestGain: 0,
+          compositeScore: s.summary.compositeScore
+        };
+      });
+      raceTimelineData.push(frame0);
+
+      // Frames 1..18
       for (let ch = 1; ch <= 18; ch++) {
         const frame = students.map(s => {
           let cumScore = 0;
@@ -4179,99 +4211,248 @@
         frame.sort((a, b) => b.cumScore - a.cumScore || b.compositeScore - a.compositeScore);
         raceTimelineData.push(frame);
       }
+
+      // Initialize current scores to active Bab
+      const frameActive = raceTimelineData[raceBab] || raceTimelineData[1] || raceTimelineData[0];
+      frameActive.forEach(s => {
+        raceCurrentScores[s.no] = s.cumScore;
+      });
     }
 
-    function renderRaceFrame(babIndex) {
-      if (!raceTimelineData || raceTimelineData.length === 0) return;
-      const chIdx = Math.max(0, Math.min(17, babIndex - 1));
-      const frame = raceTimelineData[chIdx];
-      if (!frame || frame.length === 0) return;
+    function getStudentScoreAt(studentNo, bab) {
+      const b = Math.max(0, Math.min(18, bab));
+      const frame = raceTimelineData[b];
+      if (!frame) return 0;
+      const s = frame.find(x => x.no === studentNo);
+      return s ? s.cumScore : 0;
+    }
 
-      document.getElementById('race-watermark-bg').textContent = 'BAB ' + babIndex;
-      document.getElementById('race-timeline-slider').value = babIndex;
-      document.getElementById('race-current-bab-badge').textContent = 'BAB ' + babIndex + ' / 18';
-
-      const leader = frame[0];
-      if (leader) {
-        document.getElementById('race-leader-name').textContent = leader.name;
-        document.getElementById('race-leader-score').textContent = leader.cumScore.toLocaleString() + ' pt (' + (leader.latestGain > 0 ? '+' + leader.latestGain : '0') + ' pt di Bab ' + babIndex + ')';
-      }
-
+    function updateRaceCommentary(bab, leader, second) {
       const commEl = document.getElementById('race-commentary-text');
-      if (babIndex === 1) {
-        commEl.innerHTML = '<span>🏁</span> <span>Balapan dimulai di <strong>Bab 1</strong>! ' + leader.name + ' memimpin putaran awal!</span>';
-      } else if (babIndex === 6) {
+      if (!commEl) return;
+      if (bab <= 1) {
+        commEl.innerHTML = '<span>🏁</span> <span>Balapan dimulai di <strong>Bab 1</strong>! ' + (leader ? leader.name : '') + ' memimpin putaran awal!</span>';
+      } else if (bab === 6) {
         commEl.innerHTML = '<span>🚩</span> <span><strong>Checkpoint 1 (復習 1)</strong> tercapai! Poin ulangan masuk ke papan balapan!</span>';
-      } else if (babIndex === 12) {
+      } else if (bab === 12) {
         commEl.innerHTML = '<span>🚩</span> <span><strong>Checkpoint 2 (復習 2)</strong> tercapai! Perebutan posisi 3 besar semakin sengit!</span>';
-      } else if (babIndex === 18) {
+      } else if (bab === 18) {
         commEl.innerHTML = '<span>🏆</span> <span><strong>FINISH LINE!</strong> Bab 18 & Ujian Akhir selesai! Selamat kepada sang juara!</span>';
       } else {
-        commEl.innerHTML = '<span>⚡</span> <span>Bab ' + babIndex + ': <strong>' + leader.name + '</strong> memimpin (' + leader.cumScore + ' pt), disusul <strong>' + (frame[1]?.name || '') + '</strong> (' + (frame[1]?.cumScore || 0) + ' pt)!</span>';
+        const leadScore = Math.round(raceCurrentScores[leader?.no] || leader?.cumScore || 0);
+        const secondScore = Math.round(raceCurrentScores[second?.no] || second?.cumScore || 0);
+        commEl.innerHTML = '<span>⚡</span> <span>Bab ' + bab + ': <strong>' + (leader ? leader.name : '') + '</strong> memimpin (' + leadScore + ' pt)' + (second ? ', disusul <strong>' + second.name + '</strong> (' + secondScore + ' pt)!' : '!') + '</span>';
+      }
+    }
+
+    // Static frame rendering (for initial load, slider scrubbing, or reset)
+    function renderRaceFrame(babIndex) {
+      if (raceAnimId) cancelAnimationFrame(raceAnimId);
+      if (raceStepTimeout) clearTimeout(raceStepTimeout);
+
+      if (!raceTimelineData || raceTimelineData.length === 0) return;
+      const b = Math.max(1, Math.min(18, babIndex));
+      raceBab = b;
+
+      const frame = raceTimelineData[b];
+      if (!frame) return;
+
+      frame.forEach(s => {
+        raceCurrentScores[s.no] = s.cumScore;
+      });
+
+      const lvl = MASTER_DATA.levels[currentLevel];
+      const students = lvl ? lvl.students : [];
+      const sorted = [...students].sort((a, b) => {
+        return (raceCurrentScores[b.no] - raceCurrentScores[a.no]) || (b.summary.compositeScore - a.summary.compositeScore);
+      });
+
+      renderRaceDom(sorted, b);
+      updateRaceCommentary(b, sorted[0], sorted[1]);
+    }
+
+    // High-performance DOM updater for current race scores
+    function renderRaceDom(sortedStudents, currentBabDisplay) {
+      const stage = document.getElementById('race-bars-stage');
+      if (!stage || !sortedStudents || sortedStudents.length === 0) return;
+
+      const displayCount = Math.min(raceDisplayCount, sortedStudents.length);
+      const barSpacing = 50;
+      stage.style.height = (displayCount * barSpacing) + 'px';
+
+      const maxScore = Math.max(1, raceCurrentScores[sortedStudents[0].no] || sortedStudents[0].summary?.compositeScore || 1);
+
+      // Header indicators
+      const wm = document.getElementById('race-watermark-bg');
+      if (wm) wm.textContent = 'BAB ' + currentBabDisplay;
+      const badge = document.getElementById('race-current-bab-badge');
+      if (badge) badge.textContent = 'BAB ' + currentBabDisplay + ' / 18';
+
+      const leader = sortedStudents[0];
+      if (leader) {
+        const leadScore = Math.round(raceCurrentScores[leader.no] || 0);
+        const leaderNameEl = document.getElementById('race-leader-name');
+        if (leaderNameEl) leaderNameEl.textContent = leader.name;
+        const leaderScoreEl = document.getElementById('race-leader-score');
+        if (leaderScoreEl) {
+          leaderScoreEl.textContent = leadScore.toLocaleString() + ' pt (' + (leader.latestGain > 0 ? '+' + leader.latestGain : '0') + ' pt di Bab ' + currentBabDisplay + ')';
+        }
       }
 
-      const maxScore = Math.max(1, frame[0].cumScore);
-      const stage = document.getElementById('race-bars-stage');
-      const displayCount = Math.min(raceDisplayCount, frame.length);
-      stage.style.height = (displayCount * 50) + 'px';
+      const visibleStudents = sortedStudents.slice(0, displayCount);
+      const visibleNos = [];
 
-      const barSpacing = 50;
-
-      frame.slice(0, displayCount).forEach((s, rankIdx) => {
+      visibleStudents.forEach((s, rankIdx) => {
+        visibleNos.push('rbar-' + s.no);
         let el = document.getElementById('rbar-' + s.no);
-        const widthPct = Math.max(8, (s.cumScore / maxScore) * 100);
+        const score = raceCurrentScores[s.no] !== undefined ? raceCurrentScores[s.no] : 0;
+        const roundedScore = Math.round(score);
+        const widthPct = Math.max(10, (score / maxScore) * 100);
 
         if (!el) {
           el = document.createElement('div');
           el.id = 'rbar-' + s.no;
           el.className = 'race-bar-item flex items-center gap-3 px-2';
+          el.innerHTML = `
+            <div class="flex items-center gap-2 shrink-0 w-24">
+              <span class="race-rank-badge w-8 h-6 rounded-full flex items-center justify-center text-[11px] font-bold"></span>
+              <div class="race-avatar w-7 h-7 rounded-full flex items-center justify-center text-white font-bold text-xs shadow-sm bg-gradient-to-tr ${s.avatarColor}">
+                ${getInitials(s.name)}
+              </div>
+            </div>
+
+            <div class="flex-1 relative h-9 flex items-center">
+              <div 
+                class="race-bar-fill h-full rounded-2xl flex items-center justify-between px-3 text-xs font-bold text-white shadow-md relative overflow-hidden bg-gradient-to-r ${s.avatarColor}"
+              >
+                <span class="race-name-span truncate pr-2 drop-shadow-sm font-semibold">${s.name}</span>
+                <span class="race-score-span font-mono shrink-0 drop-shadow-sm">0 pt</span>
+              </div>
+            </div>
+          `;
           stage.appendChild(el);
         }
 
         let rankBadgeClass = 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300';
         let rankIcon = '#' + (rankIdx + 1);
         if (rankIdx === 0) {
-          rankBadgeClass = 'bg-amber-400 text-amber-950 font-black ring-2 ring-amber-300';
+          rankBadgeClass = 'bg-amber-400 text-amber-950 font-black ring-2 ring-amber-300 shadow-sm';
           rankIcon = '🥇 1';
         } else if (rankIdx === 1) {
-          rankBadgeClass = 'bg-slate-300 text-slate-900 font-bold';
+          rankBadgeClass = 'bg-slate-300 text-slate-900 font-bold shadow-sm';
           rankIcon = '🥈 2';
         } else if (rankIdx === 2) {
-          rankBadgeClass = 'bg-rose-200 text-rose-950 font-bold';
+          rankBadgeClass = 'bg-rose-200 text-rose-950 font-bold shadow-sm';
           rankIcon = '🥉 3';
         }
 
-        el.style.transform = 'translateY(' + (rankIdx * barSpacing) + 'px)';
+        const badgeEl = el.querySelector('.race-rank-badge');
+        if (badgeEl) {
+          badgeEl.className = 'race-rank-badge w-8 h-6 rounded-full flex items-center justify-center text-[11px] font-bold ' + rankBadgeClass;
+          badgeEl.textContent = rankIcon;
+        }
 
-        el.innerHTML = `
-          <div class="flex items-center gap-2 shrink-0 w-24">
-            <span class="w-8 h-6 rounded-full flex items-center justify-center text-[11px] font-bold ${rankBadgeClass}">
-              ${rankIcon}
-            </span>
-            <div class="w-7 h-7 rounded-full flex items-center justify-center text-white font-bold text-xs shadow-sm bg-gradient-to-tr ${s.avatarColor}">
-              ${getInitials(s.name)}
-            </div>
-          </div>
+        const fillEl = el.querySelector('.race-bar-fill');
+        if (fillEl) {
+          fillEl.style.width = widthPct + '%';
+        }
 
-          <div class="flex-1 relative h-9 flex items-center">
-            <div 
-              class="race-bar-fill h-full rounded-2xl flex items-center justify-between px-3 text-xs font-bold text-white shadow-md relative overflow-hidden bg-gradient-to-r ${s.avatarColor}"
-              style="width: ${widthPct}%"
-            >
-              <span class="truncate pr-2 drop-shadow-sm font-semibold">${s.name}</span>
-              <span class="font-mono shrink-0 drop-shadow-sm">${s.cumScore.toLocaleString()} pt</span>
-            </div>
-          </div>
-        `;
+        const scoreEl = el.querySelector('.race-score-span');
+        if (scoreEl) {
+          scoreEl.textContent = roundedScore.toLocaleString() + ' pt';
+        }
+
+        // Smooth physical translation
+        el.style.transform = 'translate3d(0, ' + (rankIdx * barSpacing) + 'px, 0)';
       });
 
-      const topNos = frame.slice(0, displayCount).map(s => 'rbar-' + s.no);
-      const allBarEls = stage.querySelectorAll('.race-bar-item');
-      allBarEls.forEach(b => {
-        if (!topNos.includes(b.id)) {
+      // Prune bars outside active viewport
+      const allBars = stage.querySelectorAll('.race-bar-item');
+      allBars.forEach(b => {
+        if (!visibleNos.includes(b.id)) {
           b.remove();
         }
       });
+    }
+
+    // Smooth Flourish Continuous Tween Step (Points Count-up & Live Overtake)
+    function startRaceStepTween(fromBab, toBab) {
+      if (!isRacePlaying) return;
+      if (!raceTimelineData || raceTimelineData.length === 0) return;
+
+      raceTweenFromBab = fromBab;
+      raceTweenToBab = toBab;
+      raceTweenStartTime = performance.now();
+      raceTweenDuration = Math.round(1500 / raceSpeed);
+
+      const lvl = MASTER_DATA.levels[currentLevel];
+      const students = lvl ? lvl.students : [];
+
+      raceFromScores = {};
+      raceTargetScores = {};
+      students.forEach(s => {
+        raceFromScores[s.no] = (raceCurrentScores[s.no] !== undefined) ? raceCurrentScores[s.no] : getStudentScoreAt(s.no, fromBab);
+        raceTargetScores[s.no] = getStudentScoreAt(s.no, toBab);
+      });
+
+      function animateRaceFrame(now) {
+        if (!isRacePlaying) return;
+
+        const elapsed = now - raceTweenStartTime;
+        const p = Math.min(1.0, elapsed / raceTweenDuration);
+
+        // Signature Flourish cubic ease-in-out curve
+        const ease = p < 0.5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2;
+
+        // Continuously tween each student's score (points count up one by one)
+        students.forEach(s => {
+          const fromVal = raceFromScores[s.no] || 0;
+          const targetVal = raceTargetScores[s.no] || 0;
+          raceCurrentScores[s.no] = fromVal + (targetVal - fromVal) * ease;
+        });
+
+        // Dynamic re-ranking in real time during tweening (Flourish fluid overtake)
+        const sorted = [...students].sort((a, b) => {
+          return (raceCurrentScores[b.no] - raceCurrentScores[a.no]) || (b.summary.compositeScore - a.summary.compositeScore);
+        });
+
+        // Smoothly glide slider track along continuous timeline
+        const slider = document.getElementById('race-timeline-slider');
+        if (slider) {
+          slider.value = (fromBab + (toBab - fromBab) * ease).toFixed(1);
+        }
+
+        const activeBabDisplay = (p >= 0.5) ? toBab : fromBab;
+        renderRaceDom(sorted, activeBabDisplay);
+
+        if (p < 1.0) {
+          raceAnimId = requestAnimationFrame(animateRaceFrame);
+        } else {
+          // Finished step to toBab
+          raceBab = toBab;
+          if (slider) slider.value = toBab;
+          updateRaceCommentary(toBab, sorted[0], sorted[1]);
+
+          if (isRacePlaying) {
+            if (toBab < 18) {
+              // Graceful 250ms breath delay between chapters for natural pacing
+              raceStepTimeout = setTimeout(() => {
+                if (isRacePlaying) {
+                  startRaceStepTween(toBab, toBab + 1);
+                }
+              }, Math.round(250 / raceSpeed));
+            } else {
+              // Reached finish line!
+              pauseRace();
+              document.getElementById('race-play-icon').textContent = '▶️';
+              document.getElementById('race-play-text').textContent = 'Putar Ulang';
+              triggerRaceFinishCelebration();
+            }
+          }
+        }
+      }
+
+      raceAnimId = requestAnimationFrame(animateRaceFrame);
     }
 
     function toggleRacePlay() {
@@ -4280,42 +4461,37 @@
     }
 
     function playRace() {
-      if (raceBab >= 18) raceBab = 1;
+      if (raceBab >= 18) {
+        renderRaceFrame(1);
+        raceBab = 1;
+      }
       isRacePlaying = true;
       document.getElementById('race-play-icon').textContent = '⏸️';
       document.getElementById('race-play-text').textContent = 'Jeda';
 
-      const intervalMs = Math.round(1200 / raceSpeed);
-      if (raceTimer) clearInterval(raceTimer);
-
-      raceTimer = setInterval(() => {
-        if (raceBab >= 18) {
-          pauseRace();
-          triggerRaceFinishCelebration();
-          return;
-        }
-        raceBab++;
-        renderRaceFrame(raceBab);
-      }, intervalMs);
+      startRaceStepTween(raceBab, Math.min(18, raceBab + 1));
     }
 
     function pauseRace() {
       isRacePlaying = false;
-      if (raceTimer) clearInterval(raceTimer);
+      if (raceAnimId) cancelAnimationFrame(raceAnimId);
+      if (raceStepTimeout) clearTimeout(raceStepTimeout);
       document.getElementById('race-play-icon').textContent = '▶️';
-      document.getElementById('race-play-text').textContent = 'Putar Balapan';
+      document.getElementById('race-play-text').textContent = (raceBab >= 18) ? 'Putar Ulang' : 'Lanjutkan';
     }
 
     function resetRace() {
       pauseRace();
       raceBab = 1;
+      document.getElementById('race-play-icon').textContent = '▶️';
+      document.getElementById('race-play-text').textContent = 'Putar Balapan';
       renderRaceFrame(1);
     }
 
     function handleRaceScrubber(val) {
       pauseRace();
-      raceBab = parseInt(val, 10);
-      renderRaceFrame(raceBab);
+      const b = Math.round(parseFloat(val));
+      renderRaceFrame(b);
     }
 
     function setRaceSpeed(spd) {

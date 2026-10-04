@@ -24,7 +24,7 @@ window.LKPD_DATA = {
   tabs: [
     {
       id: "panduan",
-      label: "Panduan Bab 6",
+      label: "Panduan",
       type: "static",
       html: `
         <div class="note guide-box">
@@ -71,8 +71,159 @@ window.LKPD_DATA = {
     },
 
     {
+      id: "materi",
+      label: "Materi",
+      type: "static",
+      html: `
+        <h2>Ringkasan Materi Bab 6「いろいろなところに行けて、よかったです」</h2>
+        <div class="note">
+          Tema Utama: <strong>旅行に行こう (Ayo Berwisata / Rencana Perjalanan, Tiket Transportasi Kereta &amp; Refleksi Kesan Wisata)</strong><br>
+          Standar: <strong>Can-do Irodori A2.2 (初級2) Bab 6 / Persiapan JFT-Basic &amp; Evaluasi Checkpoint 1 LPK</strong>
+        </div>
+
+        <h3>1. Tata Bahasa Kunci (文法ノート)</h3>
+
+        <div class="grammar-box">
+          <h4>➊ V-るつもりです / V-ないつもりです ＜Rencana Perjalanan Spesifik＞</h4>
+          <p>Digunakan untuk menyatakan rencana atau jadwal konkret yang telah dipikirkan untuk dilakukan (atau tidak dilakukan) pada saat liburan/perjalanan. Pola ini lebih terencana dan pasti dibandingkan sekadar keinginan umum (<em>〜たいです</em>).</p>
+          <ul>
+            <li><strong>Bentuk Positif:</strong> Verba Bentuk Kamus (辞書形) + <strong>つもりです</strong></li>
+            <li><strong>Bentuk Negatif:</strong> Verba Bentuk Nai (ナイ形) + <strong>つもりです</strong></li>
+          </ul>
+          <p class="ja">例：明日は、中禅寺湖に行くつもりです。（Besok saya berencana pergi ke Danau Chuzenji.）</p>
+          <p class="ja">例：Ａ「連休はどうしますか？」 Ｂ「友達と京都に行くつもりです。」（Liburan panjang mau ke mana? Berencana pergi ke Kyoto bersama teman.）</p>
+          <p class="ja">例：時間がないので、神社には行かないつもりです。（Karena tidak ada waktu, saya berencana tidak mengunjungi kuil.）</p>
+        </div>
+
+        <div class="grammar-box">
+          <h4>➋ V-（られ）て、よかったです ／ V-（られ）なくて、残念でした ＜Kesan Terlaksana vs Disayangkan＞</h4>
+          <p>Digunakan untuk menyampaikan kesan atas suatu pengalaman setelah menyebutkan alasan berupa hal yang dapat dilakukan (berhasil) atau tidak dapat dilakukan (gagal terwujud). Pola ini sering dipadukan dengan <strong>verba bentuk potensial (可能形)</strong>.</p>
+          <ul>
+            <li><strong>Berhasil Terlaksana (Positif):</strong> Bentuk Potensial Te-form (〜て) + <strong>よかったです / 楽しかったです / 感動しました</strong></li>
+            <li><strong>Gagal / Tidak Terlaksana (Negatif):</strong> Bentuk Potensial Nakute-form (〜なくて) + <strong>残念でした</strong></li>
+          </ul>
+          <p class="ja">例：いろいろなところに行けて、よかったです。（Senang sekali karena bisa pergi ke berbagai tempat.）</p>
+          <p class="ja">例：きれいな夕日が見られて、感動しました。（Saya sangat terkesan karena bisa melihat pemandangan matahari terbenam yang indah.）</p>
+          <p class="ja">例：ショーが見られなくて、残念でした。（Sayang sekali saya tidak bisa menonton pertunjukannya.）</p>
+          <p class="ja">例：海に行きましたが、水が冷たくて泳げなくて、残念でした。（Pergi ke laut, tetapi airnya masih dingin sehingga tidak bisa berenang, sayang sekali.）</p>
+        </div>
+
+        <div class="grammar-box">
+          <h4>➌ S1 し、S2 し、～ ＜Menyebutkan Deretan Alasan / Kelebihan dengan Bentuk Potensial＞</h4>
+          <p>Digunakan untuk menyebutkan beberapa alasan atau nilai plus dari suatu destinasi atau kegiatan wisata. Menggunakan verba bentuk biasa (普通形), khususnya bentuk potensial lampau (〜た) maupun non-lampau.</p>
+          <p class="ja">例：海で泳げたし、船に乗れたし、楽しかったです。（Sangat menyenangkan karena bisa berenang di laut dan juga bisa naik kapal.）</p>
+          <p class="ja">例：温泉にも入れたし、ゆっくりできたし、よかったです。（Senang sekali karena bisa berendam air panas dan bisa bersantai rileks.）</p>
+          <p class="ja">例：沖縄、いいですよね。海で泳げるし、おいしいものも食べられるし。（Okinawa bagus ya. Bisa berenang di laut dan juga bisa mencicipi aneka makanan lezat.）</p>
+        </div>
+
+        <div class="grammar-box">
+          <h4>➍ V-る / V-ている / V-た ＋ とき、～ ＜Keterangan Waktu Peristiwa Saat Berwisata＞</h4>
+          <p>Menyatakan waktu terjadinya suatu peristiwa dengan nuansa temporal yang berbeda berdasarkan bentuk verba sebelum kata <strong>とき</strong>:</p>
+          <ul>
+            <li><strong>V-ているとき：</strong> Peristiwa terjadi saat aksi V sedang berlangsung di tengah-tengah perjalanan.<br>
+              <span class="ja">例：道を歩いているとき、リスを見ました。（Saya melihat tupai ketika sedang berjalan di jalan.）</span><br>
+              <span class="ja">例：富士山に登っているとき、空が晴れました。（Langit menjadi cerah ketika saya sedang mendaki Gunung Fuji.）</span>
+            </li>
+            <li><strong>V-るとき：</strong> Peristiwa terjadi sesaat <em>sebelum</em> aksi V dilakukan.<br>
+              <span class="ja">例：富士山に行くとき、バスに乗りました。（Saya naik bus ketika hendak berangkat ke Gunung Fuji.）</span>
+            </li>
+            <li><strong>V-たとき：</strong> Peristiwa terjadi sesaat <em>setelah</em> aksi V selesai dilakukan.<br>
+              <span class="ja">例：家に着いたとき、疲れて動けませんでした。（Saat sudah tiba di rumah, saya kelelahan dan tidak bisa bergerak.）</span><br>
+              <span class="ja">例：ウミネコが近くに来たとき、ちょっとこわかったです。（Saat burung camar datang mendekat, saya agak takut.）</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="grammar-box">
+          <h4>➎ 【Orang】と【Jumlah Orang】で ＜Partner &amp; Jumlah Orang Termasuk Diri Sendiri＞</h4>
+          <p>Menyatakan dengan siapa dan berapa total peserta yang melakukan perjalanan bersama. Angka jumlah orang pada pola ini <strong>mencakup diri pembicara</strong>.</p>
+          <p class="ja">例：友だちと2人でハウステンボスに行って来ました。（Saya pergi ke Huis Ten Bosch berdua bersama teman saya. <em>*Teman 1 orang + saya = 2 orang</em>）</p>
+          <p class="ja">例：今度、今田さんとバイさんと3人で日帰り旅行に行きます。（Lain kali, saya, Imada-san, dan Bai-san bertiga akan pergi wisata sehari pulang-pergi.）</p>
+        </div>
+
+        <h3>2. Kosakata Penting Kontekstual Bab 6</h3>
+
+        <h4>A. Tiket &amp; Transportasi Shinkansen / Kereta (切符・新幹線・駅)</h4>
+        <table>
+          <tr><th>Bahasa Jepang</th><th>Bacaan Kana</th><th>Arti Bahasa Indonesia</th></tr>
+          <tr><td class="ja">切符</td><td class="ja">きっぷ</td><td>Tiket perjalanan / karcis kereta</td></tr>
+          <tr><td class="ja">出発地</td><td class="ja">しゅっぱつち</td><td>Stasiun / kota keberangkatan</td></tr>
+          <tr><td class="ja">行き先</td><td class="ja">いきさき</td><td>Stasiun / kota tujuan</td></tr>
+          <tr><td class="ja">出発時間／発車</td><td class="ja">しゅっぱつじかん／はっしゃ</td><td>Waktu keberangkatan kereta</td></tr>
+          <tr><td class="ja">到着時間</td><td class="ja">とうちゃくじかん</td><td>Waktu tiba di stasiun tujuan</td></tr>
+          <tr><td class="ja">～発／～着</td><td class="ja">～はつ／～ちゃく</td><td>Berangkat pada ~ / Tiba pada ~</td></tr>
+          <tr><td class="ja">指定席</td><td class="ja">していせき</td><td>Kursi dengan reservasi nomor kursi</td></tr>
+          <tr><td class="ja">自由席</td><td class="ja">じゆうせき</td><td>Kursi bebas tanpa reservasi</td></tr>
+          <tr><td class="ja">禁煙席</td><td class="ja">きんえんせき</td><td>Kursi area dilarang merokok</td></tr>
+          <tr><td class="ja">グリーン車</td><td class="ja">グリーンしゃ</td><td>Gerbong eksekutif / kelas utama (Green Car)</td></tr>
+          <tr><td class="ja">～号車</td><td class="ja">～ごうしゃ</td><td>Gerbong nomor ~</td></tr>
+          <tr><td class="ja">乗車券</td><td class="ja">じょうしゃけん</td><td>Tiket tarif dasar jarak tempuh (ongkos perjalanan)</td></tr>
+          <tr><td class="ja">特急券</td><td class="ja">とっきゅうけん</td><td>Tiket tambahan ekspres / Shinkansen</td></tr>
+          <tr><td class="ja">料金</td><td class="ja">りょうきん</td><td>Biaya / tarif total tiket</td></tr>
+          <tr><td class="ja">窓口／自動券売機</td><td class="ja">まどぐち／じどうけんばいき</td><td>Loket stasiun (Midori no Madoguchi) / Mesin tiket otomatis</td></tr>
+        </table>
+
+        <h4>B. Pengumuman Stasiun &amp; Kendala Perjalanan (車内・駅アナウンス・トラブル)</h4>
+        <table>
+          <tr><th>Bahasa Jepang</th><th>Bacaan Kana</th><th>Arti Bahasa Indonesia</th></tr>
+          <tr><td class="ja">まもなく到着いたします</td><td class="ja">まもなく とうちゃく いたします</td><td>Sebentar lagi akan tiba (ragam formal pengumuman)</td></tr>
+          <tr><td class="ja">お出口は右側／左側です</td><td class="ja">おでぐちは みぎがわ／ひだりがわ です</td><td>Pintu keluar berada di sebelah kanan / kiri</td></tr>
+          <tr><td class="ja">～線はお乗り換えです</td><td class="ja">～せんは おのりかえ です</td><td>Penumpang jurusan ~ silakan transit/pindah kereta</td></tr>
+          <tr><td class="ja">～番線</td><td class="ja">～ばんせん</td><td>Peron jalur rel nomor ~</td></tr>
+          <tr><td class="ja">遅れ</td><td class="ja">おくれ</td><td>Keterlambatan kereta</td></tr>
+          <tr><td class="ja">運転見合わせ</td><td class="ja">うんてんみあわせ</td><td>Penundaan sementara perjalanan kereta</td></tr>
+          <tr><td class="ja">運転再開</td><td class="ja">うんてんさいかい</td><td>Pengoperasian kembali jadwal kereta</td></tr>
+          <tr><td class="ja">信号故障</td><td class="ja">しんごうこしょう</td><td>Kerusakan sistem persinyalan kereta</td></tr>
+          <tr><td class="ja">人身事故</td><td class="ja">じんしんじこ</td><td>Kecelakaan orang/penumpang pada lintasan rel</td></tr>
+          <tr><td class="ja">悪天候</td><td class="ja">あくてんこう</td><td>Cuaca buruk (badai, salju tebal, topan)</td></tr>
+          <tr><td class="ja">～のため</td><td class="ja">～のため</td><td>Dikarenakan / oleh karena (ragam formal pengumuman)</td></tr>
+        </table>
+
+        <h4>C. Aktivitas Wisata &amp; Ungkapan Kesan (旅行の活動・感想・文化)</h4>
+        <table>
+          <tr><th>Bahasa Jepang</th><th>Bacaan Kana</th><th>Arti Bahasa Indonesia</th></tr>
+          <tr><td class="ja">～泊～日</td><td class="ja">～はく～か</td><td>Durasi menginap (misal: 1泊2日 / いっぱくふつか, 2泊3日 / にはくみっか)</td></tr>
+          <tr><td class="ja">日帰り</td><td class="ja">ひがえり</td><td>Wisata PP (pergi-pulang di hari yang sama tanpa menginap)</td></tr>
+          <tr><td class="ja">予定</td><td class="ja">よてい</td><td>Rencana / agenda kegiatan</td></tr>
+          <tr><td class="ja">週末／連休</td><td class="ja">しゅうまつ／れんきゅう</td><td>Akhir pekan (Sabtu-Minggu) / Libur panjang berurutan</td></tr>
+          <tr><td class="ja">景色</td><td class="ja">けしき</td><td>Pemandangan alam / panorama</td></tr>
+          <tr><td class="ja">夕日</td><td class="ja">ゆうひ</td><td>Matahari terbenam / senja</td></tr>
+          <tr><td class="ja">イルミネーション</td><td class="ja">—</td><td>Pencahayaan lampu hias malam (festival cahaya)</td></tr>
+          <tr><td class="ja">名物</td><td class="ja">めいぶつ</td><td>Makanan atau cinderamata khas daerah</td></tr>
+          <tr><td class="ja">お土産</td><td class="ja">おみやげ</td><td>Oleh-oleh untuk keluarga / rekan kerja</td></tr>
+          <tr><td class="ja">感動した</td><td class="ja">かんどうした</td><td>Sangat terkesan / terharu kagum</td></tr>
+          <tr><td class="ja">残念でした</td><td class="ja">ざんねんでした</td><td>Sangat disayangkan / kecewa tidak terlaksana</td></tr>
+          <tr><td class="ja">ゆっくりできた</td><td class="ja">—</td><td>Bisa bersantai dan melepas lelah</td></tr>
+        </table>
+
+        <h3>3. Pengetahuan Budaya &amp; Sistem Tiket Kereta Jepang</h3>
+        <div class="note">
+          <p><strong>Dua Jenis Tiket Wajib Shinkansen:</strong></p>
+          <ol>
+            <li><strong>乗車券 (Jooshaken):</strong> Tiket dasar untuk berpindah tempat dari stasiun asal ke stasiun tujuan (ongkos jarak).</li>
+            <li><strong>特急券 (Tokkyuuken):</strong> Tiket tambahan khusus untuk menaiki kereta super cepat (Shinkansen atau Limited Express).
+              <ul>
+                <li><strong>指定席 (Shiteiseki):</strong> Kursi sudah dipesan dengan nomor gerbong dan nomor kursi sebelum naik kereta. Pasti mendapat kursi walau stasiun sangat padat.</li>
+                <li><strong>自由席 (Jiyuuseki):</strong> Kursi bebas di gerbong tanpa reservasi (biasanya gerbong 1–3 atau 1–5). Harganya lebih terjangkau, namun jika kereta penuh harus bersedia berdiri.</li>
+                <li><strong>グリーン車 (Green Car):</strong> Gerbong kelas eksekutif dengan kursi yang lebih luas, leg room ekstra lega, dan fasilitas berkelas tinggi.</li>
+              </ul>
+            </li>
+          </ol>
+          <p><strong>Destinasi Wisata Otentik Bab 6:</strong></p>
+          <ul>
+            <li><strong>大阪 (Osaka):</strong> Terkenal dengan Istana Osaka (大阪城), menara Tsutenkaku (通天閣), kawasan Dotonbori, dan kuliner khas kushikatsu serta takoyaki.</li>
+            <li><strong>日光 (Nikko):</strong> Kompleks kuil bersejarah Toshogu (東照宮), panorama Danau Chuzenji (中禅寺湖), dan keindahan alam pegunungan di Prefektur Tochigi.</li>
+            <li><strong>ハウステンボス (Huis Ten Bosch):</strong> Taman hiburan bernuansa kota Belanda di Nagasaki dengan kincir angin, kanal, taman bunga, serta pertunjukan festival cahaya lampu malam (イルミネーション).</li>
+            <li><strong>浄土ヶ浜 (Jodogahama):</strong> Pantai bebatuan putih indah di Prefektur Iwate, terkenal dengan pemandangan burung camar (ウミネコ) dan perahu wisata.</li>
+            <li><strong>高尾山 (Gunung Takao):</strong> Destinasi hiking populer di Tokyo bagian barat yang dapat ditempuh hanya 1 jam dengan kereta dari pusat kota.</li>
+          </ul>
+        </div>
+      `
+    },
+
+    {
       id: "moji",
-      label: "Bagian 1: Moji & Goi",
+      label: "1. 文字・語彙",
       type: "questions",
       items: [
         {
@@ -170,7 +321,7 @@ window.LKPD_DATA = {
 
     {
       id: "kaiwa",
-      label: "Bagian 2: Kaiwa & Hyogen",
+      label: "2. 会話表現",
       type: "questions",
       items: [
         {
@@ -250,7 +401,7 @@ window.LKPD_DATA = {
 
     {
       id: "choikai",
-      label: "Bagian 3: Choukai (Audio Asli)",
+      label: "3. 聴解",
       type: "questions",
       items: [
         {
@@ -386,7 +537,7 @@ window.LKPD_DATA = {
 
     {
       id: "dokkai",
-      label: "Bagian 4: Dokkai (Teks Tiket & Info)",
+      label: "4. 読解",
       type: "questions",
       items: [
         {
@@ -485,7 +636,7 @@ window.LKPD_DATA = {
 
     {
       id: "kanji",
-      label: "Bagian 5: Kanji Drill (14 Kanji Bab 6)",
+      label: "5. Kanji",
       type: "questions",
       items: [
         {
@@ -565,7 +716,7 @@ window.LKPD_DATA = {
 
     {
       id: "kosakata",
-      label: "Bagian 6: Drill Kosakata",
+      label: "6. Kosakata",
       type: "questions",
       items: [
         {
@@ -643,7 +794,7 @@ window.LKPD_DATA = {
 
     {
       id: "terjemahan",
-      label: "Bagian 7: Terjemahan Praktis",
+      label: "7. Terjemahan",
       type: "questions",
       items: [
         {
@@ -685,14 +836,8 @@ window.LKPD_DATA = {
     },
 
     {
-      id: "result",
-      label: "Nilai & Rapor",
-      type: "result"
-    },
-
-    {
       id: "audiobank",
-      label: "Bank Audio Shadowing",
+      label: "Bank Audio",
       type: "audiobank",
       items: [
         { track: "Track 01", file: "Z_[06-05]_kiku1.mp3", title: "アナウンス 1: 特急サンダーバード金沢行き案内 (Gerbong Bebas & Reservasi)" },
@@ -704,6 +849,84 @@ window.LKPD_DATA = {
         { track: "Track 07", file: "Z_[06-12]_kiku3.mp3", title: "旅行の感想 3: 高尾山ハイキング（混雑・徒歩登山・山頂の絶景）" },
         { track: "Track 08", file: "Z_[06-13]_kiku4.mp3", title: "旅行の感想 4: ハウステンボス（花畑・イルミネーション・ショー見られず）" }
       ]
+    },
+
+    {
+      id: "hasil",
+      label: "Hasil & Nilai",
+      type: "result"
+    },
+
+    {
+      id: "refleksi",
+      label: "Refleksi",
+      type: "static",
+      html: `
+        <h2>Refleksi Pembelajaran Bab 6 &amp; Checkpoint 1</h2>
+        <div class="note">
+          Luangkan waktu untuk merefleksikan pencapaian belajar Anda pada materi <strong>Bab 6: 「いろいろなところに行けて、よかったです」</strong> dan target kompetensi <strong>Checkpoint 1 (Bab 1–6)</strong>.
+        </div>
+
+        <h3>Evaluasi Mandiri Can-do (Irodori A2.2 Bab 6)</h3>
+        <table>
+          <tr>
+            <th>Can-do Bab 6</th>
+            <th>Pernyataan Kompetensi</th>
+            <th>Tingkat Pemahaman</th>
+          </tr>
+          <tr>
+            <td><strong>Can-do 23</strong></td>
+            <td>Saya dapat menemukan dan membaca informasi penting pada tiket Shinkansen, petunjuk gerbong, dan papan stasiun (出発地, 行き先, 到着時間, 指定席, 自由席).</td>
+            <td>
+              <select class="form-select">
+                <option value="">-- Pilih --</option>
+                <option value="3">⭐⭐⭐ Sangat Mampu</option>
+                <option value="2">⭐⭐ Cukup Mampu</option>
+                <option value="1">⭐ Masih Perlu Latihan</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td><strong>Can-do 24</strong></td>
+            <td>Saya dapat menyatakan dan menanyakan rencana perjalanan wisata kepada rekan kerja atau teman (pola ～つもりです dan durasi ～泊～日).</td>
+            <td>
+              <select class="form-select">
+                <option value="">-- Pilih --</option>
+                <option value="3">⭐⭐⭐ Sangat Mampu</option>
+                <option value="2">⭐⭐ Cukup Mampu</option>
+                <option value="1">⭐ Masih Perlu Latihan</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td><strong>Can-do 25</strong></td>
+            <td>Saya dapat menyimak dan memahami pengumuman stasiun/kereta tentang waktu kedatangan, jalur transfer, serta kendala operasional (人身事故, 信号故障).</td>
+            <td>
+              <select class="form-select">
+                <option value="">-- Pilih --</option>
+                <option value="3">⭐⭐⭐ Sangat Mampu</option>
+                <option value="2">⭐⭐ Cukup Mampu</option>
+                <option value="1">⭐ Masih Perlu Latihan</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td><strong>Can-do 26</strong></td>
+            <td>Saya dapat menceritakan kesan pengalaman wisata secara sederhana: aktivitas yang dilakukan (～たり～たり), rasa bersyukur/senang (～てよかったです), dan hal yang disayangkan (～なくて残念でした).</td>
+            <td>
+              <select class="form-select">
+                <option value="">-- Pilih --</option>
+                <option value="3">⭐⭐⭐ Sangat Mampu</option>
+                <option value="2">⭐⭐ Cukup Mampu</option>
+                <option value="1">⭐ Masih Perlu Latihan</option>
+              </select>
+            </td>
+          </tr>
+        </table>
+
+        <h3>Catatan Refleksi Pribadi Siswa</h3>
+        <textarea id="catatanRefleksi" style="width:100%;height:120px;border-radius:12px;border:1px solid #ccc;padding:12px;font-family:inherit;font-size:0.95rem;" placeholder="Tuliskan materi yang paling Anda sukai atau tantangan yang dihadapi pada Bab 6 / Checkpoint 1 ini..."></textarea>
+      `
     }
   ]
 };

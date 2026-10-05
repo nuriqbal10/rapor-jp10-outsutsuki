@@ -594,6 +594,102 @@
       box-shadow: 0 3px 8px rgba(37,99,235,0.25); border: none; cursor: pointer; width: 100%;
     }
 
+    /* =======================================================
+       📱 ULTRA-RESPONSIVE MOBILE STYLING (< 768px & < 640px)
+       ======================================================= */
+    @media (max-width: 768px) {
+      .app-header {
+        padding: 8px 12px;
+      }
+      .header-inner {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+      }
+      .logo-area {
+        justify-content: space-between;
+        width: 100%;
+      }
+      .logo-text h1 {
+        font-size: 1rem;
+      }
+      .logo-text p {
+        display: none;
+      }
+      .nav-tabs {
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        padding: 4px;
+        justify-content: flex-start;
+      }
+      .nav-tabs::-webkit-scrollbar {
+        display: none;
+      }
+      .nav-tab {
+        flex-shrink: 0;
+        padding: 6px 12px;
+        font-size: 0.78rem;
+      }
+      .action-buttons {
+        justify-content: space-between;
+        width: 100%;
+      }
+      .hero-banner {
+        padding: 14px 16px;
+        border-radius: 18px;
+        gap: 10px;
+      }
+      .hero-stats {
+        width: 100%;
+        justify-content: space-between;
+      }
+      .stat-pill {
+        flex: 1;
+        padding: 5px 8px;
+      }
+      .flashcard-stage {
+        max-width: 100%;
+        padding: 0 8px;
+      }
+      .flashcard-3d {
+        min-height: 380px;
+      }
+      .flashcard-face {
+        padding: 20px 18px;
+        border-radius: 22px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      /* Transform 10-column Tianzige row into 2 rows of 5 columns (5x4 = 20-grid) */
+      .grid-boxes-10-row {
+        grid-template-columns: repeat(5, 1fr) !important;
+        gap: 6px !important;
+      }
+      .kanji-unit {
+        padding: 14px 12px !important;
+        border-radius: 18px !important;
+      }
+      .kanji-header {
+        flex-direction: column;
+        align-items: flex-start !important;
+        gap: 8px !important;
+      }
+      .char-fallback {
+        font-size: 1.6rem !important;
+      }
+      .exercise-page-card {
+        padding: 16px 14px !important;
+        border-radius: 18px !important;
+      }
+      .vocab-pill {
+        font-size: 0.76rem !important;
+        padding: 2px 6px !important;
+      }
+    }
+
     /* PRINT MEDIA */
     @page { size: A4 portrait; margin: 8mm 10mm; }
     @media print {
